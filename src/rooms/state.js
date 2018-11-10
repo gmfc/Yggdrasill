@@ -3,7 +3,8 @@ import { Room } from 'colyseus'
 export class State {
   constructor (options) {
     this.players = {}
-    this.createNPC('NPC')
+    this.createNPC('NpcA')
+    this.createNPC('NpcB')
   }
 
   createPlayer (id) {
