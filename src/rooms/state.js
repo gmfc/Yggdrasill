@@ -19,7 +19,7 @@ export class State {
   }
 
   simulate () {
-    for (const id in this.players) {      
+    for (const id in this.players) {
       if (this.players[id].npc) {
         let move = Math.floor(Math.random() * 4)
         if (move === 0) {
