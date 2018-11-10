@@ -5,6 +5,7 @@ import { Server } from 'colyseus'
 import { monitor } from '@colyseus/monitor'
 
 import { ChatRoom } from './rooms/chat'
+import { StateHandlerRoom } from './rooms/state'
 
 console.log(`ola, static esta em: ${path.join(__dirname, 'static')}`)
 const port = Number(process.env.PORT || 8080)
@@ -15,6 +16,7 @@ const gameServer = new Server({
 })
 
 gameServer.register('chat', ChatRoom)
+gameServer.register('state_handler', StateHandlerRoom)
 
 app.use('/', express.static(path.join(__dirname, 'static')))
 

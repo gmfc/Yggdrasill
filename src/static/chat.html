@@ -39,6 +39,8 @@
     });
     // listen to patches coming from the server
     room.onMessage.add(function (message) {
+      console.log(message);
+      
       var p = document.createElement("p");
       p.innerHTML = message;
       document.querySelector("#messages").appendChild(p);
