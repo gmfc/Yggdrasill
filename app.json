@@ -1,0 +1,19 @@
+{
+  "name": "Yggdrasill",
+  "scripts": {
+    "postdeploy": "npm install && npm start"
+  },
+  "env": {
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "stack": "heroku-18",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
