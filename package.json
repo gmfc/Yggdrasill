@@ -4,82 +4,28 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "prestart": "npm run -s build",
-    "start": "node dist/index.js",
-    "dev": "nodemon src/index.js --exec \"node -r dotenv/config -r babel-register\"",
-    "clean": "rimraf dist",
-    "build": "npm run clean && mkdir -p dist && babel src -s -D -d dist",
-    "test": "jest",
-    "lint": "esw src test"
+    "start": "nodemon --watch '*/*.ts' --exec ts-node index.ts",
+    "bundle-colyseus-client": "browserify ./node_modules/colyseus.js/lib/index.js -s Colyseus -o static/colyseus.js",
+    "build": "npm run bundle-colyseus-client"
+  },
+  "engines": {
+    "node": "10.14.1"
   },
   "author": "gmfc",
   "license": "MIT",
   "dependencies": {
-    "@colyseus/monitor": "^0.1.7",
-    "babel-cli": "^6.26.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "colyseus": "^0.9.19",
-    "express": "^4.16.4",
-    "rimraf": "^2.6.2"
+    "@colyseus/monitor": "*",
+    "colyseus": "*",
+    "colyseus.js": "*",
+    "express": "*",
+    "lowdb": "^1.0.0",
+    "nodemon": "*",
+    "serve-index": "*",
+    "superagent": "*"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.6",
-    "babel-jest": "^21.2.0",
-    "babel-register": "^6.26.0",
-    "dotenv": "^4.0.0",
-    "eslint": "^4.19.1",
-    "eslint-config-standard": "^11.0.0",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-jest": "^21.18.0",
-    "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-promise": "^3.8.0",
-    "eslint-plugin-standard": "^3.1.0",
-    "eslint-watch": "^3.1.3",
-    "jest": "^23.4.1",
-    "nodemon": "^1.18.7",
-    "supertest": "^3.1.0"
-  },
-  "babel": {
-    "presets": [
-      [
-        "env",
-        {
-          "targets": {
-            "node": "current"
-          }
-        }
-      ]
-    ],
-    "plugins": [
-      "transform-object-rest-spread",
-      "transform-class-properties"
-    ]
-  },
-  "eslintConfig": {
-    "parser": "babel-eslint",
-    "plugins": [
-      "import",
-      "jest"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 2017,
-      "sourceType": "module"
-    },
-    "env": {
-      "node": true,
-      "jest": true
-    },
-    "extends": [
-      "eslint:recommended"
-    ],
-    "rules": {
-      "jest/no-focused-tests": 2,
-      "jest/no-identical-title": 2
-    }
-  },
-  "jest": {
-    "testEnvironment": "node"
+    "browserify": "*",
+    "ts-node": "*",
+    "typescript": "*"
   }
 }
