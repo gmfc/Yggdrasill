@@ -1,10 +1,11 @@
 import { Room, Client } from "colyseus";
-import { WorldState } from "../worldState";
+import { WorldState } from "../worldState/WorldState";
 
 export class Map extends Room<WorldState>{
     onInit(options: { map: string }) {
-        console.log(`initOptions: ${JSON.stringify(options)}, ${this.roomId}`)
-        this.setState(new WorldState(options.map))
+
+
+        this.setState(new WorldState(options.map, this))
         this.setSimulationInterval(this.state.simulate, 30)
         this.setPatchRate(30)
     }
@@ -30,5 +31,7 @@ export class Map extends Room<WorldState>{
         this.state.removePlayer(client)
     }
 
-    onDispose() { }
+    onDispose() {
+        this.state.dispose()
+    }
 }

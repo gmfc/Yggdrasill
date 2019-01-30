@@ -4,6 +4,9 @@ import { createServer } from 'http'
 import * as path from 'path'
 import { monitor } from '@colyseus/monitor'
 import { Map } from './rooms/Map'
+import { populate } from './data/db'
+
+// populate()
 
 const port = Number(process.env.PORT || 2567)
 const app = express()

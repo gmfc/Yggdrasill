@@ -1,0 +1,13 @@
+{
+  "maps": [
+    {
+      "name": "test",
+      "npcs": [
+        {
+          "name": "slime",
+          "number": 5
+        }
+      ]
+    }
+  ]
+}
