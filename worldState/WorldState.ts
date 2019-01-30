@@ -1,6 +1,8 @@
-import { Agent } from '../agent/Agent'
+import { Agent } from '../agent/'
 import { EntityMap, Client, Room } from 'colyseus';
 import { getMapData, NPCData } from '../data/MapData';
+import * as nanoid from 'nanoid'
+import * as agentRepository from '../agent'
 
 export class WorldState {
 
@@ -22,7 +24,7 @@ export class WorldState {
     }
 
     private createNPC(type: string): void {
-        console.log(`Creating ${type}`);
+        this.agents[nanoid(10)] = new agentRepository[type]()
 
     }
 

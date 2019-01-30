@@ -19,6 +19,7 @@
     "colyseus.js": "*",
     "express": "*",
     "lowdb": "^1.0.0",
+    "nanoid": "^2.0.1",
     "nodemon": "*",
     "serve-index": "*",
     "superagent": "*"
