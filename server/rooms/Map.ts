@@ -1,10 +1,10 @@
 import { Room, Client } from 'colyseus'
-import { WorldState } from '../worldState/WorldState'
+import { MapState } from '../state'
 
-export class Map extends Room<WorldState> {
+export class Map extends Room<MapState> {
   onInit (options: { map: string }) {
 
-    this.setState(new WorldState(options.map, this))
+    this.setState(new MapState(options.map, this))
     this.setSimulationInterval(this.state.simulate, 30)
     this.setPatchRate(30)
   }

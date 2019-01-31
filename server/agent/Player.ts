@@ -3,7 +3,7 @@ import { Client } from 'colyseus'
 import { State } from '../state/State'
 import { Monster } from './agentInterfaces'
 
-export class Slime extends Agent implements Monster {
+export class Player extends Agent implements Monster {
   x: number = Math.random() * 100
   y: number = Math.random() * 100
 
@@ -12,10 +12,10 @@ export class Slime extends Agent implements Monster {
   }
 
   public simulate (state: State, deltaTime: number) {
-        // TODO
+    // TODO
   }
 
   public dispose (state: State) {
-        // TODO
+    // TODO
   }
 }

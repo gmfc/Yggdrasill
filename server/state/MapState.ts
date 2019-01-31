@@ -1,15 +1,16 @@
-import { Agent } from '../agent/'
+import * as agents from '../agent'
 import { EntityMap, Client, Room } from 'colyseus'
 import { getMapData, NPCData } from '../data/MapData'
 import * as nanoid from 'nanoid'
-import * as agentRepository from '../agent'
+import { State } from './State'
 
-export class WorldState {
+export class MapState extends State {
 
-  private agents: EntityMap<Agent> = {}
+  private agents: EntityMap<agents.Agent> = {}
   private vinculatedRoomID: string
 
   constructor (public map: string, room: Room) {
+    super()
     this.vinculatedRoomID = room.roomId
     let mapData = getMapData(map)
     mapData.npcs.forEach(npcGroup => {
@@ -24,24 +25,30 @@ export class WorldState {
   }
 
   private createNPC (type: string): void {
-    this.agents[nanoid(10)] = new agentRepository[type]()
-
+    this.agents[nanoid(10)] = new agents[type]()
   }
 
   public createPlayer (client: Client): void {
-        // TODO
+    this.agents[client.id] = new agents.Player(client)
   }
 
   public propagateMessage (client: Client, message: any): void {
         // TODO
   }
 
+  public removeNPC (id: string): void {
+    delete this.agents[id]
+  }
+
   public removePlayer (client: Client): void {
-        // TODO
+    this.agents[client.id].dispose(this)
+    delete this.agents[client.id]
   }
 
   public simulate (deltaTime: number): void {
-        // TODO
+    for (const id in this.agents) {
+      this.agents[id].simulate(this, deltaTime)
+    }
   }
 
   public dispose (): void {
