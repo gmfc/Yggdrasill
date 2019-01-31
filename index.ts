@@ -3,7 +3,7 @@ import { Server, RedisPresence } from 'colyseus'
 import { createServer } from 'http'
 import * as path from 'path'
 import { monitor } from '@colyseus/monitor'
-import { Map } from './server/rooms'
+import { MapController } from './server/rooms'
 
 const port = Number(process.env.PORT || 2567)
 const app = express()
@@ -17,7 +17,7 @@ const gameServer = new Server({
   presence: new RedisPresence()
 })
 
-gameServer.register('map', Map, {
+gameServer.register('map', MapController, {
   map: 'test'
 })
 

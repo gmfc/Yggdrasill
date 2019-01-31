@@ -1,9 +1,13 @@
 import { Room, Client } from 'colyseus'
 import { MapState } from '../state'
 
-export class Map extends Room<MapState> {
-  onInit (options: { map: string }) {
+/**
+ * MapController
+ * Deal with events, and server calls related to a game Map/Level
+ */
+export class MapController extends Room<MapState> {
 
+  onInit (options: { map: string }) {
     this.setState(new MapState(options.map, this))
     this.setSimulationInterval(this.state.simulate, 30)
     this.setPatchRate(30)
