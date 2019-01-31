@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "start": "nodemon --watch '*/*.ts' --exec ts-node index.ts",
+    "start": "nodemon --watch '**/*.ts' --exec ts-node index.ts",
     "bundle-colyseus-client": "browserify ./node_modules/colyseus.js/lib/index.js -s Colyseus -o static/colyseus.js",
     "build": "npm run bundle-colyseus-client"
   },
@@ -27,6 +27,8 @@
   "devDependencies": {
     "browserify": "*",
     "ts-node": "*",
+    "tslint": "^5.12.1",
+    "tslint-config-standard": "^8.0.1",
     "typescript": "*"
   }
 }
