@@ -1,5 +1,5 @@
-import { AiAgent } from './abstractions/AiAgent'
-import { SlimeAi } from '../ai/SlimeAi'
+import { AiAgent } from '../abstractions/AiAgent'
+import { SlimeAi } from '../../ai/SlimeAi'
 import { Room, nosync } from 'colyseus'
 
 export class Slime extends AiAgent {

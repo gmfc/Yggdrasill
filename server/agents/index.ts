@@ -1,1 +1,1 @@
-export { Slime } from './Slime'
+export { Slime } from './npc/Slime'
