@@ -1,5 +1,5 @@
 import { MapState } from '../../states'
-import { Room, nosync } from 'colyseus';
+import { Room, nosync } from 'colyseus'
 
 export abstract class Agent {
 

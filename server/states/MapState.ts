@@ -50,6 +50,11 @@ export class MapState extends State {
   /**
    * Game loop tick
    * Foul Wizardry and black magic
+   *
+   * This function returns the simulation function with the scope fixed, i think.
+   * That solved a preety confusing bug that instancialized 4(?) MapCoomControllers for
+   * some reason.
+   *
    */
   public simulate (mapState: MapState): SimulationCallback {
     return (deltaTime: number): void => {
