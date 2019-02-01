@@ -1,21 +1,20 @@
-import * as low from 'lowdb'
-import * as FileSync from 'lowdb/adapters/FileSync'
+export declare type MapData = {
+  mapName: string,
+  map: any,
+  agentGroups: [AgentGroupData]
+}
 
-export declare type NPCData = {
-  name: string,
+export declare type AgentGroupData = {
+  agentName: string,
   number: number
 }
-export declare type MapData = {
-  name: string,
-  npcs: NPCData[]
-}
 
-export function getMapData (name: string): MapData {
-  const adapter = new FileSync('./data/db.json')
-  const db = low(adapter)
-
-  return db.get('maps')
-        .find({ name: name })
-        .value() as MapData
-
+export function getMapData (mapName: string): MapData {
+  return {
+    mapName: 'testMap',
+    map: false,
+    agentGroups: [
+      { agentName: 'Slime', number: 2 }
+    ]
+  } as MapData
 }

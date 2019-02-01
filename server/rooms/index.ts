@@ -1,1 +1,1 @@
-export { MapController } from './MapController'
+export { MapRoomController } from './MapRoomController'

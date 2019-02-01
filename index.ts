@@ -3,21 +3,17 @@ import { Server, RedisPresence } from 'colyseus'
 import { createServer } from 'http'
 import * as path from 'path'
 import { monitor } from '@colyseus/monitor'
-import { MapController } from './server/rooms'
+import { MapRoomController } from './server/rooms'
 
 const port = Number(process.env.PORT || 2567)
 const app = express()
 
 // Attach WebSocket Server on HTTP Server.
 const gameServer = new Server({
-  server: createServer(app),
-  verifyClient: (info, next) => {
-    next(true)
-  },
-  presence: new RedisPresence()
+  server: createServer(app)
 })
 
-gameServer.register('map', MapController, {
+gameServer.register('map', MapRoomController, {
   map: 'test'
 })
 
