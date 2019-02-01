@@ -1,18 +1,19 @@
 import { State } from './State'
 import { Client, Room, EntityMap, nosync } from 'colyseus'
-import * as agents from '../agents'
+import * as agentRepository from '../agents/AgentRepository'
 import { MapData, getMapData, AgentGroupData } from '../data'
 import * as nanoid from 'nanoid'
+import { Agent } from '../agents'
 
 export class MapState extends State {
 
-  public agents: EntityMap<agents.Agent>
+  public agents: EntityMap<Agent>
 
   @nosync
   private mapData: MapData
 
-  constructor (public mapName: string, public roomHandler: Room) {
-    super(mapName, roomHandler)
+  constructor (public mapName: string, public room: Room) {
+    super(mapName, room)
     // TODO: getMapData may be async call?
     this.mapData = getMapData(mapName)
     this.mapData.agentGroups.forEach(agenrGroup => {
@@ -28,7 +29,7 @@ export class MapState extends State {
 
   private createAgent (agentName: string): void {
     const agentID = nanoid(10)
-    this.agents[agentID] = new agents[agentName](agentID)
+    this.agents[agentID] = new agentRepository[agentName](agentID, this.room) as Agent
   }
 
   /**
@@ -38,7 +39,7 @@ export class MapState extends State {
   public simulate (deltaTime: number): void {
     for (const id in this.agents) {
       if (this.agents.hasOwnProperty(id)) {
-        this.agents[id].simulate(this)
+        this.agents[id].simulate(deltaTime, this)
       }
     }
   }
