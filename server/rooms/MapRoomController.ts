@@ -1,5 +1,5 @@
 import { Room, Client } from 'colyseus'
-import { TestState, MapState, State } from '../states'
+import { MapState, State } from '../states'
 
 /**
  * MapController

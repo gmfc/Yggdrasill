@@ -1,6 +1,6 @@
 import { Action, ActionCallback } from './Action'
 import { State } from '../../states'
-import { Agent } from '../../agents'
+import { Agent } from '../../agents/abstractions'
 
 export class UtilityAi {
 

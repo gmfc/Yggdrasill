@@ -1,5 +1,5 @@
 import { State } from '../../states'
-import { Agent } from '../../agents'
+import { Agent } from '../../agents/abstractions'
 
 type BlockingCondition = (wState: State, agent: Agent) => boolean
 type ScoreCalculation = (wState: State, agent: Agent) => number
