@@ -1,1 +1,0 @@
-export { MapData } from './MapData'

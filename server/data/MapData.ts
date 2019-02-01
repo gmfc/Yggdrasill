@@ -1,7 +1,12 @@
 export declare type MapData = {
   mapName: string,
   map: any,
-  agentGroups: [{agentName: string, number: number}]
+  agentGroups: [AgentGroupData]
+}
+
+export declare type AgentGroupData = {
+  agentName: string,
+  number: number
 }
 
 export function getMapData (mapName: string): MapData {
