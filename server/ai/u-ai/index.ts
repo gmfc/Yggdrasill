@@ -1,5 +1,5 @@
 import { UtilityAi } from './UtilityAi'
-import { Agent } from '../../agents'
+import { Agent } from '../../agents/abstractions'
 import { State } from '../../states'
 import { ActionCallback } from './Action'
 import { nosync } from 'colyseus'
@@ -27,3 +27,5 @@ export class Ai {
     this.ai.evaluate(wState, agent, this.debug).do(wState, agent)
   }
 }
+
+export { Action } from './Action'

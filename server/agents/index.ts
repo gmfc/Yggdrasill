@@ -1,1 +1,1 @@
-export { Agent } from './abstractions/Agent'
+export { Slime } from './Slime'

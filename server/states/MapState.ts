@@ -1,10 +1,9 @@
 import { State } from './abstractions/State'
 import { Client, Room, EntityMap, nosync } from 'colyseus'
-import * as agentRepository from '../agents/AgentRepository'
+import * as agents from '../agents'
 import { MapData, getMapData, AgentGroupData } from '../data'
 import * as nanoid from 'nanoid'
-import { Agent } from '../agents'
-import { timingSafeEqual } from 'crypto'
+import { Agent } from '../agents/abstractions'
 import { SimulationCallback } from 'colyseus/lib/Room'
 
 export class MapState extends State {
@@ -44,7 +43,7 @@ export class MapState extends State {
 
   private createAgent (agentName: string): void {
     const agentID = nanoid(10)
-    this.agents[agentID] = new agentRepository[agentName](agentID, this.room) as Agent
+    this.agents[agentID] = new agents[agentName](agentID, this.room) as Agent
   }
 
   /**

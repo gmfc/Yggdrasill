@@ -1,1 +1,0 @@
-export { Slime } from './Slime'
