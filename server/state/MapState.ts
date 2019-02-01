@@ -1,6 +1,6 @@
 import * as agents from '../agent'
 import { EntityMap, Client, Room } from 'colyseus'
-import { getMapData, NPCData } from '../data/MapData'
+import { getMapData, NPCData, MapData } from '../data/MapData'
 import * as nanoid from 'nanoid'
 import { State } from './State'
 
@@ -8,12 +8,13 @@ export class MapState extends State {
 
   private agents: EntityMap<agents.Agent> = {}
   private vinculatedRoomID: string
+  private mapData: MapData
 
   constructor (public map: string, room: Room) {
     super()
     this.vinculatedRoomID = room.roomId
-    let mapData = getMapData(map)
-    mapData.npcs.forEach(npcGroup => {
+    this.mapData = getMapData(map)
+    this.mapData.npcs.forEach(npcGroup => {
       this.populateNPCGroup(npcGroup)
     })
   }
