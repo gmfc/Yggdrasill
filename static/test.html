@@ -28,6 +28,7 @@
 
       var client = new Colyseus.Client(location.protocol.replace("http", "ws") + host + (location.port ? ':'+location.port : ''));
       var room = client.join("map");
+      
       room.onJoin.add(function () {
         console.log("joined");
       });
@@ -43,9 +44,7 @@
 
       // listen to patches coming from the server
       room.onMessage.add(function(message) {
-        var p = document.createElement("p");
-        p.innerHTML = message;
-        document.querySelector("#messages").appendChild(p);
+        console.log(message);
       });
 
       // send message to room on submit

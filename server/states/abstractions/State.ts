@@ -1,16 +1,22 @@
-import { Room, Client } from 'colyseus'
+import { Room, Client, nosync } from 'colyseus'
+import { SimulationCallback } from 'colyseus/lib/Room'
 
 export abstract class State {
-  constructor (public mapName: string, public mapController: Room) {
+
+  public mapName: string
+
+  @nosync
+  public roomReference: Room
+
+  constructor (mapName: string, room: Room) {
     this.mapName = mapName
-    this.mapController = mapController
   }
 
   /**
    * Game loop tick
    * @param deltaTime elapsed time
    */
-  public abstract simulate (deltaTime: number): void
+  public abstract simulate (state: State): SimulationCallback
 
   /**
    * Handle player connection/initialization

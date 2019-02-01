@@ -10,11 +10,7 @@ const app = express()
 
 // Attach WebSocket Server on HTTP Server.
 const gameServer = new Server({
-  server: createServer(app),
-  verifyClient: (info, next) => {
-    next(true)
-  }
-  //  presence: new RedisPresence()
+  server: createServer(app)
 })
 
 gameServer.register('map', MapRoomController, {

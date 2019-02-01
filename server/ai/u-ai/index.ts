@@ -2,12 +2,21 @@ import { UtilityAi } from './UtilityAi'
 import { Agent } from '../../agents'
 import { State } from '../../states'
 import { ActionCallback } from './Action'
+import { nosync } from 'colyseus'
 
 export class Ai {
+  @nosync
   ai: UtilityAi
+
+  @nosync
   debug: boolean = false
-  constructor (public agent: Agent) {
+
+  @nosync
+  agent: Agent
+
+  constructor (agent: Agent) {
     this.ai = new UtilityAi()
+    this.agent = agent
   }
 
   addAction (description: string, callback: ActionCallback): void {

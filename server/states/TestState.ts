@@ -1,67 +1,53 @@
+import { EntityMap, Client, nosync, Room } from 'colyseus'
 import { State } from './abstractions/State'
-import { Client, Room, EntityMap, nosync } from 'colyseus'
-import * as agentRepository from '../agents/AgentRepository'
+import { Agent } from '../agents'
 import { MapData, getMapData, AgentGroupData } from '../data'
 import * as nanoid from 'nanoid'
-import { Agent } from '../agents'
-import { timingSafeEqual } from 'crypto'
+import * as agentRepository from '../agents/AgentRepository'
 import { SimulationCallback } from 'colyseus/lib/Room'
 
-export class MapState extends State {
+export class TestState extends State {
 
   public agents: EntityMap<Agent> = {}
 
-  @nosync
   private mapData: MapData
 
-  @nosync
-  private populated: boolean = false
-
   constructor (public mapName: string, room: Room) {
-
     super(mapName, room)
-    console.log(`MapStateCreate`)
-    // TODO: getMapData may be async call?
     this.mapData = getMapData(mapName)
-    this.populateAgents()
-
-    // this.roomReference.clock.setTimeout(() => {
-      // this.roomReference.setSimulationInterval(this.simulate, 500)
-      // }, 5000)
-  }
-
-  private populateAgents (): void {
-    console.log(`Populating...`)
-
-    this.populated = true
     this.mapData.agentGroups.forEach(agenrGroup => {
+      console.log(`le map`)
+
       this.populateAgentGroup(agenrGroup)
     })
   }
 
   private populateAgentGroup (agenrGroup: AgentGroupData): void {
+    console.log(`TestState#populateAgentGroup ${agenrGroup}`)
+
     for (let c = 0; c < agenrGroup.number; c++) {
       this.createAgent(agenrGroup.agentName)
     }
+
   }
 
   private createAgent (agentName: string): void {
     const agentID = nanoid(10)
-    this.agents[agentID] = new agentRepository[agentName](agentID) as Agent
+    console.log(`TestState#createAgent ${agentID}`)
+
+    this.agents[agentID] = new agentRepository[agentName](agentID)
   }
 
   /**
    * Game loop tick
-   * Foul Wizardry and black magic
+   * @param deltaTime elapsed time
    */
-  public simulate (mapState: MapState): SimulationCallback {
-    return (deltaTime: number): void => {
-      for (let id in mapState.agents) {
-        if (mapState.agents.hasOwnProperty(id)) {
-          mapState.agents[id].simulate(deltaTime, mapState)
-        }
-      }
+  public simulate (state: State): SimulationCallback {
+    console.log(`TestState#simulate`)
+    return (num: number): void => {
+      // the void
     }
+
   }
 
   /**
@@ -70,9 +56,8 @@ export class MapState extends State {
    * @param options
    */
   public onJoin (client: Client, options: any): void {
-    console.log(`MapState#onJoin ${client}`)
+    console.log(`TestState#join`)
 
-    // TODO
   }
 
   /**
@@ -81,7 +66,8 @@ export class MapState extends State {
    * @param message message sent
    */
   public onMessage (client: Client, message: any): void {
-    // TODO
+    console.log(`TestState#message`)
+
   }
 
   /**
@@ -90,14 +76,16 @@ export class MapState extends State {
    * @param consented
    */
   public onLeave (client: Client, consented: boolean): void {
-    // TODO
+    console.log(`TestState#leave`)
+
   }
 
   /**
    * Called when room expunged
    */
   public onDispose (): void {
-    // TODO
+    console.log(`TestState#dispose`)
+
   }
 
 }

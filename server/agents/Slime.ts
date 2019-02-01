@@ -4,17 +4,14 @@ import { Room, nosync } from 'colyseus'
 
 export class Slime extends AiAgent {
 
-  @nosync
-  private room: Room
-
-  constructor (public id: string, room: Room) {
+  constructor (public id: string) {
     super(id)
+    console.log(`Slime#init ID:${id}`)
     this.ai = new SlimeAi(this)
-    this.room = room
   }
 
   public talk (text: string): void {
     console.log(`Slime#${this.id}: ${text}`)
-    this.room.broadcast(`Broadcast@Slime#${this.id}: ${text}`)
+    // this.room.broadcast(`Broadcast@Slime#${this.id}: ${text}`)
   }
 }
