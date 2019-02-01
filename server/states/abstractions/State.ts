@@ -6,10 +6,11 @@ export abstract class State {
   public mapName: string
 
   @nosync
-  public roomReference: Room
+  public room: Room
 
   constructor (mapName: string, room: Room) {
     this.mapName = mapName
+    this.room = room
   }
 
   /**

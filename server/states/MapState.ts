@@ -25,9 +25,6 @@ export class MapState extends State {
     this.mapData = getMapData(mapName)
     this.populateAgents()
 
-    // this.roomReference.clock.setTimeout(() => {
-      // this.roomReference.setSimulationInterval(this.simulate, 500)
-      // }, 5000)
   }
 
   private populateAgents (): void {
@@ -47,7 +44,7 @@ export class MapState extends State {
 
   private createAgent (agentName: string): void {
     const agentID = nanoid(10)
-    this.agents[agentID] = new agentRepository[agentName](agentID) as Agent
+    this.agents[agentID] = new agentRepository[agentName](agentID, this.room) as Agent
   }
 
   /**
