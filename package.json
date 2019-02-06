@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "nodemon --watch '**/*.ts' --exec ts-node index.ts",
-    "bundle-colyseus-client": "browserify ./node_modules/colyseus.js/lib/index.js -s Colyseus -o static/colyseus.js",
+    "bundle-colyseus-client": "parcel build ./protoClient/index.html -o ./protoClient/dist",
     "build": "npm run bundle-colyseus-client"
   },
   "engines": {
@@ -16,7 +16,7 @@
   "dependencies": {
     "@colyseus/monitor": "*",
     "colyseus": "*",
-    "colyseus.js": "*",
+    "colyseus.js": "^0.9.16",
     "express": "*",
     "lowdb": "^1.0.0",
     "nanoid": "^2.0.1",
