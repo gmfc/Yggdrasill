@@ -8,12 +8,12 @@ import { MapState, State } from '../states'
 export class MapRoomController extends Room<MapState> {
 
   onInit (options: { map: string }) {
-    let stack = new Error().stack
-
     console.log(`MapRoomController#init`)
 
     this.setState(new MapState(options.map, this))
-    this.setSimulationInterval(this.state.simulate(this.state), 500)
+
+    let simulationInterval = 1000 / 16
+    this.setSimulationInterval(this.state.simulate(this.state), simulationInterval)
     // this.setPatchRate(patchRate)
   }
 
