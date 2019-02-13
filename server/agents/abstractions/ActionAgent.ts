@@ -1,6 +1,20 @@
 import { Agent } from './Agent'
 import { nosync, Room } from 'colyseus'
 
+// TODO: this will replace the message action
+export enum AgentActions {
+  UP,
+  DOWN,
+  LEFT,
+  RIGHT,
+  F1,
+  F2,
+  F3,
+  F4,
+  F5,
+  F6
+}
+
 export abstract class ActionAgent extends Agent {
 
   // TODO: Type actionToPerform
