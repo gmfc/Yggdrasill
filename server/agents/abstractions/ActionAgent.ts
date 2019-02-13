@@ -11,17 +11,23 @@ export abstract class ActionAgent extends Agent {
     super(id, room)
   }
 
-  public setActionToPerform (message: any): void {
-    this.actionToPerform = message
+  /**
+   * Set an action to be performed next tick
+   * @param action
+   */
+  public setActionToPerform (action: any): void {
+    this.actionToPerform = action
   }
 
+  /**
+   * Get the action to be performed next tick
+   */
   public getActionToPerform () {
     return this.actionToPerform
   }
 
   /**
-   * Perform an action
-   * @param actionToPerform
+   * Perform the action
    */
   public abstract perform (): void
 }
