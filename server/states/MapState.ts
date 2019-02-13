@@ -5,10 +5,12 @@ import { MapData, getMapData, AgentGroupData } from '../data'
 import * as nanoid from 'nanoid'
 import { Agent } from '../agents/abstractions'
 import { SimulationCallback } from 'colyseus/lib/Room'
+import { Player } from '../agents/player/Player'
 
 export class MapState extends State {
 
   public agents: EntityMap<Agent> = {}
+  public players: EntityMap<Player> = {}
 
   @nosync
   private mapData: MapData
@@ -28,7 +30,6 @@ export class MapState extends State {
 
   private populateAgents (): void {
     console.log(`Populating...`)
-
     this.populated = true
     this.mapData.agentGroups.forEach(agenrGroup => {
       this.populateAgentGroup(agenrGroup)
@@ -43,7 +44,7 @@ export class MapState extends State {
 
   private createAgent (agentName: string): void {
     const agentID = nanoid(10)
-    this.agents[agentID] = new agents[agentName](agentID, this.room) as Agent
+    this.agents[agentID] = new agents[agentName](agentID, this.room)
   }
 
   /**
@@ -57,6 +58,11 @@ export class MapState extends State {
    */
   public simulate (mapState: MapState): SimulationCallback {
     return (deltaTime: number): void => {
+      for (let id in mapState.players) {
+        if (mapState.players.hasOwnProperty(id)) {
+          mapState.players[id].simulate(deltaTime, mapState)
+        }
+      }
       for (let id in mapState.agents) {
         if (mapState.agents.hasOwnProperty(id)) {
           mapState.agents[id].simulate(deltaTime, mapState)
@@ -71,8 +77,8 @@ export class MapState extends State {
    * @param options
    */
   public onJoin (client: Client, options: any): void {
-    console.log(`MapState#onJoin ${client}`)
-
+    console.log(`MapState#onJoin ${client.id}`)
+    this.players[client.id] = new Player(client.id, this.room)
     // TODO
   }
 
@@ -82,7 +88,7 @@ export class MapState extends State {
    * @param message message sent
    */
   public onMessage (client: Client, message: any): void {
-    // TODO
+    this.players[client.id].perform(message)
   }
 
   /**

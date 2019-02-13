@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "nodemon --watch '**/*.ts' --exec ts-node index.ts",
-    "bundle-colyseus-client": "parcel build ./protoClient/index.html -o ./protoClient/dist",
+    "bundle-colyseus-client": "parcel build ./protoClient/index.html",
     "build": "npm run bundle-colyseus-client"
   },
   "engines": {
@@ -26,6 +26,8 @@
   },
   "devDependencies": {
     "browserify": "*",
+    "cssnano": "^4.1.9",
+    "jquery": "^3.3.1",
     "ts-node": "*",
     "tslint": "^5.12.1",
     "tslint-config-standard": "^8.0.1",

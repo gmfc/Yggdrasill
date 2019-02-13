@@ -5,6 +5,10 @@ export abstract class Agent {
 
   public id: string
 
+  public x: number = 0
+
+  public y: number = 0
+
   @nosync
   public room: Room
 

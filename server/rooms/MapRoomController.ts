@@ -38,8 +38,6 @@ export class MapRoomController extends Room<MapState> {
   }
 
   onMessage (client: Client, message: any) {
-    console.log(message)
-
     this.state.onMessage(client, message)
   }
 
