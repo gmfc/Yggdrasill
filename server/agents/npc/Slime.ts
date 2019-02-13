@@ -15,8 +15,8 @@ export class Slime extends AiAgent {
     this.y += Math.random()
   }
 
-  public perform (actionToPerform: any): void {
-    switch (actionToPerform) {
+  public perform (): void {
+    switch (this.getActionToPerform()) {
       case 'walk':
         this.walk()
         break

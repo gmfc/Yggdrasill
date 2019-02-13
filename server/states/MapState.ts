@@ -82,7 +82,7 @@ export class MapState extends State {
    * @param message message sent
    */
   public onMessage (client: Client, message: any): void {
-    this.agents[client.id].perform(message)
+    this.agents[client.id].setActionToPerform(message)
   }
 
   /**

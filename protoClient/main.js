@@ -16,7 +16,11 @@ $(document).ready(() => {
 
   $('html').keydown(e => {
     console.log(e.which)
-    
-    room.send({ press: e.which })
+    room.send({ walk: e.which })
+  })
+
+  $('html').keyup(e => {
+    console.log(e.which)
+    room.send({ reset: 'action' })
   })
 })

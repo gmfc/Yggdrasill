@@ -5,7 +5,7 @@ export abstract class ActionAgent extends Agent {
 
   // TODO: Type actionToPerform
   @nosync
-  private actionToPerform: any = false
+  private actionToPerform: any
 
   constructor (id: string, room: Room) {
     super(id, room)
@@ -23,5 +23,5 @@ export abstract class ActionAgent extends Agent {
    * Perform an action
    * @param actionToPerform
    */
-  public abstract perform (actionToPerform: any): void
+  public abstract perform (): void
 }

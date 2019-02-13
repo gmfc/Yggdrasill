@@ -8,14 +8,21 @@ export class Player extends ActionAgent {
     super(id,room)
   }
 
-  public perform (actionToPerform: any): void {
-    this.room.broadcast(actionToPerform)
+  public perform (): void {
+    if (this.getActionToPerform['walk']) {
+      this.room.broadcast('Player Walking')
+    }
+
+    if (this.getActionToPerform['reset']) {
+      this.setActionToPerform(false)
+    }
   }
 
   public simulate (deltaTime: number, mapState: MapState): void {
-    if (this.getActionToPerform) {
-      this.perform(this.getActionToPerform)
-      this.setActionToPerform(false)
+    console.log(this.getActionToPerform())
+
+    if (this.getActionToPerform()) {
+      this.perform()
     }
   }
 
