@@ -2,8 +2,11 @@
     "compilerOptions": {
         "outDir": "lib",
         "module": "commonjs",
-        "lib": ["es6"],
-        "target": "es2016",
+        "lib": [
+            "es6",
+            "dom"
+        ],
+        "target": "es6",
         "declaration": true,
         "noImplicitAny": false,
         "experimentalDecorators": true,

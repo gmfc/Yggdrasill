@@ -1,14 +1,29 @@
-import { Agent } from '../abstractions'
-import { Room } from 'colyseus'
+import { Room, nosync } from 'colyseus'
 import { MapState } from '../../states'
+import { ActionAgent } from '../abstractions/ActionAgent'
 
-export class Player extends Agent {
+export class Player extends ActionAgent {
+
   constructor (id: string, room: Room) {
     super(id,room)
   }
 
+  public perform (): void {
+    if (this.getActionToPerform['walk']) {
+      this.room.broadcast('Player Walking')
+    }
+
+    if (this.getActionToPerform['reset']) {
+      this.setActionToPerform(false)
+    }
+  }
+
   public simulate (deltaTime: number, mapState: MapState): void {
-    // TODO
+    console.log(this.getActionToPerform())
+
+    if (this.getActionToPerform()) {
+      this.perform()
+    }
   }
 
 }

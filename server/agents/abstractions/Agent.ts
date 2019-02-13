@@ -5,6 +5,10 @@ export abstract class Agent {
 
   public id: string
 
+  public x: number = 0
+
+  public y: number = 0
+
   @nosync
   public room: Room
 
@@ -13,6 +17,11 @@ export abstract class Agent {
     this.id = id
   }
 
+  /**
+   * Calculate action to perform or simulates something
+   * @param deltaTime
+   * @param mapState
+   */
   public abstract simulate (deltaTime: number, mapState: MapState): void
 
 }
