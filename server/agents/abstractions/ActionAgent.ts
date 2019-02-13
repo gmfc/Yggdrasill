@@ -1,6 +1,20 @@
 import { Agent } from './Agent'
 import { nosync, Room } from 'colyseus'
 
+// TODO: this will replace the message action
+export enum AgentActions {
+  UP,
+  DOWN,
+  LEFT,
+  RIGHT,
+  F1,
+  F2,
+  F3,
+  F4,
+  F5,
+  F6
+}
+
 export abstract class ActionAgent extends Agent {
 
   // TODO: Type actionToPerform
@@ -11,17 +25,23 @@ export abstract class ActionAgent extends Agent {
     super(id, room)
   }
 
-  public setActionToPerform (message: any): void {
-    this.actionToPerform = message
+  /**
+   * Set an action to be performed next tick
+   * @param action
+   */
+  public setActionToPerform (action: any): void {
+    this.actionToPerform = action
   }
 
+  /**
+   * Get the action to be performed next tick
+   */
   public getActionToPerform () {
     return this.actionToPerform
   }
 
   /**
-   * Perform an action
-   * @param actionToPerform
+   * Perform the action
    */
   public abstract perform (): void
 }
