@@ -17,6 +17,11 @@ export abstract class Agent {
     this.id = id
   }
 
+  /**
+   * Calculate action to perform or simulates something
+   * @param deltaTime
+   * @param mapState
+   */
   public abstract simulate (deltaTime: number, mapState: MapState): void
 
 }

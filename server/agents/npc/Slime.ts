@@ -15,6 +15,17 @@ export class Slime extends AiAgent {
     this.y += Math.random()
   }
 
+  public perform (actionToPerform: any): void {
+    switch (actionToPerform) {
+      case 'walk':
+        this.walk()
+        break
+      default:
+        this.talk('waiting')
+        break
+    }
+  }
+
   public talk (text: string): void {
     // console.log(`Slime#${this.id}: ${text}`)
     this.room.broadcast(`Broadcast@Slime#${this.id}: ${text}`)

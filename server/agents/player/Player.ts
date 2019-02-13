@@ -1,24 +1,21 @@
-import { Agent } from '../abstractions'
 import { Room, nosync } from 'colyseus'
 import { MapState } from '../../states'
+import { ActionAgent } from '../abstractions/ActionAgent'
 
-export class Player extends Agent {
-
-  @nosync
-  private actionToPerform: any = false
+export class Player extends ActionAgent {
 
   constructor (id: string, room: Room) {
     super(id,room)
   }
 
-  public perform (message: any): void {
-    this.actionToPerform = message
+  public perform (actionToPerform: any): void {
+    this.room.broadcast(actionToPerform)
   }
 
   public simulate (deltaTime: number, mapState: MapState): void {
-    if (this.actionToPerform) {
-      this.room.broadcast(`${this.id} is performing ${JSON.stringify(this.actionToPerform)}`)
-      this.actionToPerform = false
+    if (this.getActionToPerform) {
+      this.perform(this.getActionToPerform)
+      this.setActionToPerform(false)
     }
   }
 
