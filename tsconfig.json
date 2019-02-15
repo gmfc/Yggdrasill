@@ -10,7 +10,8 @@
         "declaration": true,
         "noImplicitAny": false,
         "experimentalDecorators": true,
-        "sourceMap": false
+        "sourceMap": false,
+        "allowSyntheticDefaultImports":  true
     },
     "include": [
       "**/*.ts"
