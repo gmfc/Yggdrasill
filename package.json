@@ -2,11 +2,11 @@
   "name": "yggdrasill",
   "version": "0.0.1",
   "description": "",
-  "main": "dist/index.js",
+  "main": "index.ts",
   "scripts": {
-    "start": "nodemon --watch '**/*.ts' --exec ts-node index.ts",
-    "bundle-colyseus-client": "parcel build ./protoClient/index.html",
-    "build": "npm run bundle-colyseus-client"
+    "start": "nodemon --watch ./**/*.ts --exec ts-node index.ts",
+    "build-client": "parcel build ./protoClient/index.html",
+    "client": "parcel ./protoClient/index.html"
   },
   "engines": {
     "node": "10.14.1"
@@ -25,9 +25,14 @@
     "superagent": "*"
   },
   "devDependencies": {
+    "@types/jquery": "^3.3.29",
+    "@types/node": "^11.9.4",
+    "@types/pixi.js": "^4.8.6",
     "browserify": "*",
     "cssnano": "^4.1.9",
     "jquery": "^3.3.1",
+    "pixi-viewport": "^3.17.1",
+    "pixi.js": "^4.8.5",
     "ts-node": "*",
     "tslint": "^5.12.1",
     "tslint-config-standard": "^8.0.1",

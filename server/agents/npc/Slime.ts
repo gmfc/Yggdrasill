@@ -8,11 +8,13 @@ export class Slime extends AiAgent {
     super(id, room)
     console.log(`Slime#init ID:${id}`)
     this.ai = new SlimeAi(this)
+    this.x = 150
+    this.y = 150
   }
 
   public walk (): void {
-    this.x += Math.random()
-    this.y += Math.random()
+    this.x += 1 - (2 * Math.random())
+    this.y += 1 - (2 * Math.random())
   }
 
   public perform (): void {
