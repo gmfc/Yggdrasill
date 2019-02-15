@@ -13,8 +13,8 @@ export class Slime extends AiAgent {
   }
 
   public walk (): void {
-    this.x += 1 - (2 * Math.random())
-    this.y += 1 - (2 * Math.random())
+    this.x += 10 - (20 * Math.random())
+    this.y += 10 - (20 * Math.random())
   }
 
   public perform (): void {

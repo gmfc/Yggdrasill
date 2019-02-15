@@ -1,10 +1,11 @@
 import * as PIXI from 'pixi.js'
 import Viewport from 'pixi-viewport'
 import { Client, DataChange } from 'colyseus.js'
+import $ from 'jquery'
 
 const ENDPOINT = 'ws://localhost:2567'
 
-const WORLD_SIZE = 500
+const WORLD_SIZE = 2000
 
 export const lerp = (a: number, b: number, t: number) => (b - a) * t + a
 
@@ -46,14 +47,19 @@ export class Application extends PIXI.Application {
     this.initialize()
     this.interpolation = false
 
-    this.viewport.on('click', (e) => {
-      console.log('click')
-
+    // Event Handlers
+    $(document).on('keydown', handler => {
       if (this.currentPlayerEntity) {
-        const point = this.viewport.toLocal(e.data.global)
-        this.room.send(['mouse', { x: point.x, y: point.y }])
+        this.room.send(['keydown', handler.key])
       }
     })
+
+    // this.viewport.on('click', (e) => {
+    //   if (this.currentPlayerEntity) {
+    //     const point = this.viewport.toLocal(e.data.global)
+    //     this.room.send(['mouse', { x: point.x, y: point.y }])
+    //   }
+    // })
   }
 
   initialize () {
@@ -65,9 +71,7 @@ export class Application extends PIXI.Application {
       if (change.operation === 'add') {
         console.log('add')
 
-        const color = (change.value.radius < 4)
-                    ? 0xff0000
-                    : 0xFFFF0B
+        const color = 0xFFFF0B
 
         const graphics = new PIXI.Graphics()
         graphics.lineStyle(0)

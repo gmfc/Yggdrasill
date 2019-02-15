@@ -71,8 +71,8 @@ export class MapState extends State {
    * @param options
    */
   public onJoin (client: Client, options: any): void {
-    console.log(`MapState#onJoin ${client.id}`)
-    this.agents[client.id] = new Player(client.id, this.room)
+    console.log(`MapState#onJoin ${client.sessionId}`)
+    this.agents[client.sessionId] = new Player(client.sessionId, this.room)
     // TODO
   }
 
@@ -82,7 +82,7 @@ export class MapState extends State {
    * @param message message sent
    */
   public onMessage (client: Client, message: any): void {
-    this.agents[client.id].setActionToPerform(message)
+    this.agents[client.sessionId].setActionToPerform(message)
   }
 
   /**
