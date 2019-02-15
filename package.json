@@ -5,8 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "start": "nodemon --watch ./**/*.ts --exec ts-node index.ts",
-    "build-client": "parcel build ./protoClient/index.html",
-    "client": "parcel ./protoClient/index.html"
+    "build-client": "parcel build ./client/index.html",
+    "client": "parcel ./client/index.html"
   },
   "engines": {
     "node": "10.14.1"
