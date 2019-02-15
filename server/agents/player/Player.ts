@@ -8,14 +8,30 @@ export class Player extends ActionAgent {
     super(id,room)
   }
 
-  public perform (): void {
-    if (this.getActionToPerform()['walk']) {
-      this.room.broadcast(`Broadcast@PLayer#${this.id}: WALK`)
-      this.setActionToPerform(false)
+  public move (data: string): void {
+    switch (data) {
+      case 'ArrowUp':
+        this.y -= 10
+        break
+      case 'ArrowDown':
+        this.y += 10
+        break
+      case 'ArrowLeft':
+        this.x -= 10
+        break
+      case 'ArrowRight':
+        this.x += 10
+        break
     }
+  }
 
-    if (this.getActionToPerform()['reset']) {
-      this.setActionToPerform(false)
+  public perform (): void {
+    let [action, data] = this.getActionToPerform()
+    switch (action) {
+      case 'keydown':
+        this.move(data)
+        this.setActionToPerform(['none','none'])
+        break
     }
   }
 

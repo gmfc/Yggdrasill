@@ -38,9 +38,7 @@ export class MapRoomController extends Room<MapState> {
   }
 
   onMessage (client: Client, message: any) {
-    console.log(`Client: ${client.id}: ${message.key}`)
-
-    // this.state.onMessage(client, message)
+    this.state.onMessage(client, message)
   }
 
   onLeave (client: Client, consented: boolean) {
