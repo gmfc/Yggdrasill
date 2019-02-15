@@ -114,8 +114,10 @@ export class Application extends PIXI.Application {
     console.log(`loop`)
 
     for (let id in this.agents) {
-      this.agents[id].x = lerp(this.agents[id].x, this.room.state.agents[id].x, 0.2)
-      this.agents[id].y = lerp(this.agents[id].y, this.room.state.agents[id].y, 0.2)
+      if (this.agents.hasOwnProperty(id)) {
+        this.agents[id].x = lerp(this.agents[id].x, this.room.state.agents[id].x, 0.2)
+        this.agents[id].y = lerp(this.agents[id].y, this.room.state.agents[id].y, 0.2)
+      }
     }
 
         // continue looping if interpolation is still enabled.
