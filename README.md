@@ -6,13 +6,13 @@
 
 * NPCs (with AI)
 * World state
+* Player Agent
+* Client (kinda)
 
 ## TODO
 
-* Player Agent
 * Agent interactions
 * Player changing maps
 * Global NPCs that can traverse between maps
 * Map asset's map
-* Client (kinda lots of stuff)
 * Game?
