@@ -45,7 +45,7 @@ export class Application extends PIXI.Application {
     this.stage.addChild(this.viewport)
 
     this.initialize()
-    this.interpolation = false
+    this.interpolation = true
 
     // Event Handlers
     $(document).on('keydown', handler => {
