@@ -6,7 +6,6 @@ export class Slime extends AiAgent {
 
   constructor (id: string, room: Room) {
     super(id, room)
-    console.log(`Slime#init ID:${id}`)
     this.ai = new SlimeAi(this)
     this.x = 500 * Math.random()
     this.y = 500 * Math.random()

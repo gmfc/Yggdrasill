@@ -8,18 +8,19 @@ import { MapState, State } from '../states'
 export class MapRoomController extends Room<MapState> {
 
   onInit (options: { map: string }) {
-    console.log(`MapRoomController#init`)
+    console.log(`MapRoomController#onInit`)
 
     this.setState(new MapState(options.map, this))
 
     let simulationInterval = 1000 / 10
+    this.setPatchRate(simulationInterval / 2)
     this.setSimulationInterval(this.state.simulate(this.state), simulationInterval)
     // this.setPatchRate(patchRate)
   }
 
   requestJoin (options: any, isNew: boolean) {
     // TODO
-    console.log(`MapRoomController#Join requested ${options}`)
+    console.log(`MapRoomController#requestJoin requested ${JSON.stringify(options)}`)
     return true
   }
 
