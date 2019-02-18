@@ -1,0 +1,1 @@
+export { StaticDie } from './StaticDie'

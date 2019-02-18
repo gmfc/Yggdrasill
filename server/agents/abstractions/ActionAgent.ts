@@ -9,7 +9,6 @@ export type AgentAction = {
 
 export abstract class ActionAgent extends Agent {
 
-  // TODO: Type actionToPerform
   @nosync
   private actionToPerform: AgentAction[] = []
 
@@ -33,8 +32,6 @@ export abstract class ActionAgent extends Agent {
    * Get the action to be performed next tick
    */
   public getActionToPerform (): AgentAction {
-    console.log(this.actionToPerform.length)
-
     return this.actionToPerform.length > 0 ? this.actionToPerform.shift() : { action: 'none',input: 'none',target: 'none' }
   }
 

@@ -12,7 +12,8 @@
 ## TODO
 
 * Agent interactions
-* Player changing maps
-* Global NPCs that can traverse between maps
+* Player switching maps
+* NPCs
+* Global NPCs
 * Map asset's map
 * Game?

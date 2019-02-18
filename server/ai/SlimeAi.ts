@@ -1,6 +1,7 @@
 import { Ai, Action } from './u-ai'
 import { Slime } from '../agents/npc/Slime'
 import { MapState } from '../states'
+import { StaticDie } from '../util'
 
 export class SlimeAi extends Ai {
   constructor (agent: Slime) {
@@ -8,7 +9,7 @@ export class SlimeAi extends Ai {
 
     this.addAction('Walk', (action: Action) => {
       action.addScoreFunction('Random Chance', (mapState: MapState, agent: Slime) => {
-        return Math.random() * 100
+        return StaticDie.number
       })
 
       action.setAction((mapState: MapState, agent: Slime) => {
@@ -18,7 +19,7 @@ export class SlimeAi extends Ai {
 
     this.addAction('Wait', (action: Action) => {
       action.addScoreFunction('Random Chance', (mapState: MapState, agent: Slime) => {
-        return Math.random() * 100
+        return StaticDie.number
       })
 
       action.setAction((mapState: MapState, agent: Slime) => {
