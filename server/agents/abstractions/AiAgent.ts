@@ -1,6 +1,6 @@
 import { Agent } from './Agent'
 import { Ai } from '../../ai/u-ai'
-import { MapState } from '../../states'
+import { MapState, State } from '../../states'
 import { nosync, Room } from 'colyseus'
 import { ActionAgent } from './ActionAgent'
 
