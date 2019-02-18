@@ -13,7 +13,7 @@ export class SlimeAi extends Ai {
       })
 
       action.setAction((mapState: MapState, agent: Slime) => {
-        agent.queueActionToPerform({ action: 'goToTarget' })
+        agent.goToTarget()
       })
     })
 
@@ -23,18 +23,23 @@ export class SlimeAi extends Ai {
       })
 
       action.setAction((mapState: MapState, agent: Slime) => {
-        agent.queueActionToPerform({ action: 'setRandomCoord' })
+        let tx = agent.targetX += StaticDie.number * 500
+        let ty = agent.targetY += StaticDie.number * 500
+        agent.setTaget(tx,ty)
       })
     })
 
     this.addAction('Flee', (action: Action) => {
+      let nearId: string | boolean = false
       action.addScoreFunction('f(agentInRange)', (mapState: MapState, agent: Slime) => {
-        let nearId = agent.agentInRange(mapState, 10)
+        nearId = agent.agentInRange(mapState, 20)
         return nearId ? 100 : 0
       })
 
       action.setAction((mapState: MapState, agent: Slime) => {
-        agent.queueActionToPerform({ action: 'fleeNearAgent' })
+        if (typeof nearId === 'string') {
+          agent.fleeTarget(mapState.agents[nearId].x, mapState.agents[nearId].y)
+        }
       })
     })
 
