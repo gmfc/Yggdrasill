@@ -13,7 +13,6 @@ window.onresize = () => {
 document.addEventListener('click', (e) => {
   const input = e.target as HTMLInputElement
 
-  if (input.id === 'interpolation') {
-    app.interpolation = input.checked
-  }
+  app.interpolation = input.checked
+
 })

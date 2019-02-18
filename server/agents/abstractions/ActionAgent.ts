@@ -1,25 +1,19 @@
 import { Agent } from './Agent'
 import { nosync, Room } from 'colyseus'
 
-// TODO: this will replace the message action
-export enum AgentActions {
-  UP,
-  DOWN,
-  LEFT,
-  RIGHT,
-  F1,
-  F2,
-  F3,
-  F4,
-  F5,
-  F6
+export type AgentAction = {
+  action: string,
+  input?: string,
+  target?: string
 }
 
 export abstract class ActionAgent extends Agent {
 
   // TODO: Type actionToPerform
   @nosync
-  private actionToPerform: any
+  private actionToPerform: AgentAction[] = []
+
+  private maxQueueSize: number = 4
 
   constructor (id: string, room: Room) {
     super(id, room)
@@ -29,15 +23,19 @@ export abstract class ActionAgent extends Agent {
    * Set an action to be performed next tick
    * @param action
    */
-  public setActionToPerform (action: any): void {
-    this.actionToPerform = action
+  public queueActionToPerform (action: AgentAction): void {
+    if (this.actionToPerform.length <= this.maxQueueSize) {
+      this.actionToPerform.push(action)
+    }
   }
 
   /**
    * Get the action to be performed next tick
    */
-  public getActionToPerform () {
-    return this.actionToPerform
+  public getActionToPerform (): AgentAction {
+    console.log(this.actionToPerform.length)
+
+    return this.actionToPerform.length > 0 ? this.actionToPerform.shift() : { action: 'none',input: 'none',target: 'none' }
   }
 
   /**

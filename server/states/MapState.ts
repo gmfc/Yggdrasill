@@ -5,7 +5,7 @@ import { MapData, getMapData, AgentGroupData } from '../data'
 import * as nanoid from 'nanoid'
 import { SimulationCallback } from 'colyseus/lib/Room'
 import { Player } from '../agents/player/Player'
-import { ActionAgent } from '../agents/abstractions/ActionAgent'
+import { ActionAgent, AgentAction } from '../agents/abstractions/ActionAgent'
 
 export class MapState extends State {
 
@@ -81,8 +81,8 @@ export class MapState extends State {
    * @param client client origin
    * @param message message sent
    */
-  public onMessage (client: Client, message: any): void {
-    this.agents[client.sessionId].setActionToPerform(message)
+  public onMessage (client: Client, action: AgentAction): void {
+    this.agents[client.sessionId].queueActionToPerform(action)
   }
 
   /**

@@ -12,7 +12,7 @@ export class SlimeAi extends Ai {
       })
 
       action.setAction((mapState: MapState, agent: Slime) => {
-        agent.walk()
+        agent.queueActionToPerform({ action: 'walk' })
       })
     })
 
@@ -22,7 +22,7 @@ export class SlimeAi extends Ai {
       })
 
       action.setAction((mapState: MapState, agent: Slime) => {
-        agent.setActionToPerform({ action: 'wait' })
+        agent.queueActionToPerform({ action: 'wait' })
       })
     })
 

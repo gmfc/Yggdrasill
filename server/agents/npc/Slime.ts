@@ -12,19 +12,15 @@ export class Slime extends AiAgent {
     this.y = 150
   }
 
-  public walk (): void {
+  private walk (): void {
     this.x += 10 - (20 * Math.random())
     this.y += 10 - (20 * Math.random())
   }
 
   public perform (): void {
-    switch (this.getActionToPerform()) {
-      case 'walk':
-        this.walk()
-        break
-      default:
-        this.talk('waiting')
-        break
+    let { action } = this.getActionToPerform()
+    if (action === 'walk') {
+      this.walk()
     }
   }
 
