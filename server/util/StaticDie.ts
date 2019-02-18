@@ -4,10 +4,9 @@ export class StaticDie {
   private numbers: number[] = []
 
   private constructor () {
-    console.log(`roll 250 die`)
-
-    const populationSize: number = 250
-    for (let i = 0; i < populationSize; i++) {
+    // MUST be a prime number
+    const primePopulationSize: number = 997
+    for (let i = 0; i < primePopulationSize; i++) {
       this.numbers.push(Math.floor(Math.random() * 100))
     }
   }
