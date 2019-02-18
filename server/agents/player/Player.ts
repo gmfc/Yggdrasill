@@ -8,38 +8,34 @@ export class Player extends ActionAgent {
     super(id,room)
   }
 
-  public move (data: string): void {
+  private move (data: string): void {
     switch (data) {
-      case 'ArrowUp':
+      case 'w':
         this.y -= 10
         break
-      case 'ArrowDown':
+      case 's':
         this.y += 10
         break
-      case 'ArrowLeft':
+      case 'a':
         this.x -= 10
         break
-      case 'ArrowRight':
+      case 'd':
         this.x += 10
         break
     }
   }
 
   public perform (): void {
-    let [action, data] = this.getActionToPerform()
+    let { action, input } = this.getActionToPerform()
     switch (action) {
       case 'keydown':
-        this.move(data)
-        this.setActionToPerform(['none','none'])
+        this.move(input)
         break
     }
   }
 
   public simulate (deltaTime: number, mapState: MapState): void {
-
-    if (this.getActionToPerform()) {
-      this.perform()
-    }
+    this.perform()
   }
 
 }

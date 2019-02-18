@@ -28,6 +28,7 @@
     "@types/jquery": "^3.3.29",
     "@types/node": "^11.9.4",
     "@types/pixi.js": "^4.8.6",
+    "@types/underscore": "^1.8.9",
     "browserify": "*",
     "cssnano": "^4.1.9",
     "jquery": "^3.3.1",
@@ -36,6 +37,7 @@
     "ts-node": "*",
     "tslint": "^5.12.1",
     "tslint-config-standard": "^8.0.1",
-    "typescript": "*"
+    "typescript": "*",
+    "underscore": "^1.9.1"
   }
 }

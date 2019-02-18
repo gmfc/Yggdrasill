@@ -12,7 +12,7 @@ export class MapRoomController extends Room<MapState> {
 
     this.setState(new MapState(options.map, this))
 
-    let simulationInterval = 1000 / 16
+    let simulationInterval = 1000 / 10
     this.setSimulationInterval(this.state.simulate(this.state), simulationInterval)
     // this.setPatchRate(patchRate)
   }

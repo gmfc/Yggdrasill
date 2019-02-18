@@ -2,6 +2,7 @@ import * as PIXI from 'pixi.js'
 import Viewport from 'pixi-viewport'
 import { Client, DataChange } from 'colyseus.js'
 import $ from 'jquery'
+import _ from 'underscore'
 
 const ENDPOINT = 'ws://localhost:2567'
 
@@ -46,13 +47,20 @@ export class Application extends PIXI.Application {
 
     this.initialize()
     this.interpolation = true
-
-    // Event Handlers
-    $(document).on('keydown', handler => {
+    $(document).on('keydown',handler => {
       if (this.currentPlayerEntity) {
-        this.room.send(['keydown', handler.key])
+        this.room.send({ action: 'keydown', input: handler.key })
       }
     })
+
+    // Event Handlers
+    // $(document).on('keyup',_.debounce((handler) => {
+    //   console.log(handler)
+
+    //   if (this.currentPlayerEntity) {
+    //     this.room.send({ action: 'keydown', input: handler.key })
+    //   }
+    // },100))
 
     // this.viewport.on('click', (e) => {
     //   if (this.currentPlayerEntity) {
@@ -115,8 +123,6 @@ export class Application extends PIXI.Application {
   }
 
   loop () {
-    console.log(`loop`)
-
     for (let id in this.agents) {
       if (this.agents.hasOwnProperty(id)) {
         this.agents[id].x = lerp(this.agents[id].x, this.room.state.agents[id].x, 0.2)
