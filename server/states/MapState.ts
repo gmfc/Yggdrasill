@@ -71,7 +71,6 @@ export class MapState extends State {
    * @param options
    */
   public onJoin (client: Client, options: any): void {
-    console.log(`MapState#onJoin ${client.sessionId}`)
     this.agents[client.sessionId] = new Player(client.sessionId, this.room)
     // TODO
   }
@@ -91,6 +90,7 @@ export class MapState extends State {
    * @param consented
    */
   public onLeave (client: Client, consented: boolean): void {
+    delete this.agents[client.sessionId]
     // TODO
   }
 

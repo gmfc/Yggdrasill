@@ -1,6 +1,6 @@
 import { Agent } from './Agent'
 import { Ai } from '../../ai/u-ai'
-import { MapState } from '../../states'
+import { MapState, State } from '../../states'
 import { nosync, Room } from 'colyseus'
 import { ActionAgent } from './ActionAgent'
 
@@ -16,6 +16,11 @@ export abstract class AiAgent extends ActionAgent {
   public simulate (deltaTime: number, mapState: MapState): void {
     // TODO Make something with deltaTime?
     this.ai.evaluate(mapState, this)
-    this.perform()
+    // action now taken by AI
+    // this.perform()
+  }
+
+  public perform (): void {
+    // Nope...
   }
 }

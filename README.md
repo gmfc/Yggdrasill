@@ -8,11 +8,12 @@
 * World state
 * Player Agent
 * Client (kinda)
+* Agent interactions
 
 ## TODO
 
-* Agent interactions
-* Player changing maps
-* Global NPCs that can traverse between maps
+* Player switching maps
+* NPCs
+* Global NPCs
 * Map asset's map
 * Game?

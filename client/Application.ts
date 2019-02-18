@@ -4,7 +4,7 @@ import { Client, DataChange } from 'colyseus.js'
 import $ from 'jquery'
 import _ from 'underscore'
 
-const ENDPOINT = 'ws://localhost:2567'
+const ENDPOINT = `${window.location.protocol.replace('http','ws')}//${window.location.host}`
 
 const WORLD_SIZE = 2000
 
