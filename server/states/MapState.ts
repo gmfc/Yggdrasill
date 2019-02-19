@@ -9,7 +9,7 @@ import { State } from './abstractions/State'
 
 export class MapState extends State {
 
-  public agents: EntityMap<ActionAgent | Player> = {}
+  public agents: EntityMap<ActionAgent> = {}
 
   @nosync
   private mapData: MapData

@@ -41,25 +41,25 @@ export abstract class ActionAgent extends Agent {
   }
 
   public getDistance (targetX: number, targetY: number): number {
-    let x = this.x - targetX
-    let y = this.y - targetY
-    let distance = Math.sqrt(x * x + y * y)
+    const x = this.x - targetX
+    const y = this.y - targetY
+    const distance = Math.sqrt(x * x + y * y)
     return distance
   }
 
   public goToTarget (): void {
-    let tx = this.targetX - this.x
-    let ty = this.targetY - this.y
-    let dist = Math.sqrt(tx * tx + ty * ty)
+    const tx = this.targetX - this.x
+    const ty = this.targetY - this.y
+    const dist = Math.sqrt(tx * tx + ty * ty)
 
     this.x += (tx / dist) * this.speed
     this.y += (ty / dist) * this.speed
   }
 
   public fleeTarget (targetX: number, targetY: number) {
-    let tx = targetX - this.x
-    let ty = targetY - this.y
-    let dist = Math.sqrt(tx * tx + ty * ty)
+    const tx = targetX - this.x
+    const ty = targetY - this.y
+    const dist = Math.sqrt(tx * tx + ty * ty)
 
     this.x -= (tx / dist) * this.speed
     this.y -= (ty / dist) * this.speed

@@ -15,6 +15,8 @@ const gameServer = new Server({
 
 gameServer.register('map', MapRoomController, {
   map: 'test'
+}).catch(err => {
+  console.error(err)
 })
 
 app.use('/', express.static(path.join(__dirname, '../dist')))
