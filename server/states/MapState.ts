@@ -11,15 +11,10 @@ export class MapState extends State {
 
   public agents: EntityMap<ActionAgent> = {}
 
-  @nosync
-  private mapData: MapData
-
-  constructor (public mapName: string, room: Room) {
-    super(mapName, room)
-    this.room.setMetadata(this.mapData)
+  constructor (mapData: MapData, room: Room) {
+    super(mapData, room)
     console.log(`MapStateCreate`)
     // TODO: getMapData may be async call?
-    this.mapData = getMapData(mapName)
     this.populateAgents()
 
   }
