@@ -1,4 +1,4 @@
-import { Room, Client, nosync } from 'colyseus'
+import { Client, nosync, Room } from 'colyseus'
 import { SimulationCallback } from 'colyseus/lib/Room'
 
 export abstract class State {

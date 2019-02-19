@@ -1,5 +1,5 @@
-import { Room, Client } from 'colyseus'
-import { MapState, State } from '../states'
+import { Client, Room } from 'colyseus'
+import { MapState } from '../states'
 
 /**
  * MapController
@@ -15,7 +15,6 @@ export class MapRoomController extends Room<MapState> {
     let simulationInterval = 1000 / 10
     this.setPatchRate(simulationInterval / 2)
     this.setSimulationInterval(this.state.simulate(this.state), simulationInterval)
-    // this.setPatchRate(patchRate)
   }
 
   requestJoin (options: any, isNew: boolean) {
@@ -33,7 +32,7 @@ export class MapRoomController extends Room<MapState> {
 
   onJoin (client: Client, options: any, auth: any) {
     // TODO AUTH
-    console.log(`MapRoomController#onJoin ${client}`)
+    console.log(`MapRoomController#onJoin ${JSON.stringify(client)}`)
 
     this.state.onJoin(client, options)
   }

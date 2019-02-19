@@ -1,5 +1,5 @@
-import { Agent } from './Agent'
 import { nosync, Room } from 'colyseus'
+import { Agent } from './Agent'
 
 export type AgentAction = {
   action: string,

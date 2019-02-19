@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "nodemon --watch ./**/*.ts --exec ts-node index.ts",
+    "start": "nodemon --watch ./server/**/*.ts --exec ts-node ./server/index.ts",
     "build-client": "parcel build ./client/index.html",
     "client": "parcel ./client/index.html"
   },

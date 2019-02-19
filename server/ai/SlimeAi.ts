@@ -1,7 +1,7 @@
-import { Ai, Action } from './u-ai'
 import { Slime } from '../agents/npc/Slime'
 import { MapState } from '../states'
 import { StaticDie } from '../util'
+import { Action, Ai } from './u-ai'
 
 export class SlimeAi extends Ai {
   constructor (agent: Slime) {

@@ -1,8 +1,8 @@
-import { UtilityAi } from './UtilityAi'
+import { nosync } from 'colyseus'
 import { Agent } from '../../agents/abstractions'
 import { State } from '../../states'
 import { ActionCallback } from './Action'
-import { nosync } from 'colyseus'
+import { UtilityAi } from './UtilityAi'
 
 export class Ai {
   @nosync

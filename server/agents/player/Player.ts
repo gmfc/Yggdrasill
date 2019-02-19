@@ -1,4 +1,4 @@
-import { Room, nosync } from 'colyseus'
+import { Room } from 'colyseus'
 import { MapState } from '../../states'
 import { ActionAgent } from '../abstractions/ActionAgent'
 

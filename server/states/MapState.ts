@@ -1,11 +1,11 @@
-import { State } from './abstractions/State'
-import { Client, Room, EntityMap, nosync } from 'colyseus'
-import * as agents from '../agents'
-import { MapData, getMapData, AgentGroupData } from '../data'
-import * as nanoid from 'nanoid'
+import { Client, EntityMap, nosync, Room } from 'colyseus'
 import { SimulationCallback } from 'colyseus/lib/Room'
-import { Player } from '../agents/player/Player'
+import * as nanoid from 'nanoid'
+import * as agents from '../agents'
 import { ActionAgent, AgentAction } from '../agents/abstractions/ActionAgent'
+import { Player } from '../agents/player/Player'
+import { AgentGroupData, getMapData, MapData } from '../data'
+import { State } from './abstractions/State'
 
 export class MapState extends State {
 
