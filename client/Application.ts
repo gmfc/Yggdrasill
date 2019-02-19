@@ -1,12 +1,11 @@
 import * as PIXI from 'pixi.js'
-import Viewport from 'pixi-viewport'
 import { Client, DataChange } from 'colyseus.js'
 import $ from 'jquery'
-import _ from 'underscore'
+import Viewport from 'pixi-viewport'
 
 const ENDPOINT = `${window.location.protocol.replace('http','ws')}//${window.location.host}`
 
-const WORLD_SIZE = 2000
+const WORLD_SIZE = 500
 
 export const lerp = (a: number, b: number, t: number) => (b - a) * t + a
 

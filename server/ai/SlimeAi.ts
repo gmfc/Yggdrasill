@@ -23,8 +23,8 @@ export class SlimeAi extends Ai {
       })
 
       action.setAction((mapState: MapState, agent: Slime) => {
-        let tx = agent.targetX += StaticDie.number * 500
-        let ty = agent.targetY += StaticDie.number * 500
+        let tx = StaticDie.number * 500
+        let ty = StaticDie.number * 500
         agent.setTaget(tx,ty)
       })
     })
