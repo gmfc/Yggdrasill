@@ -90,6 +90,7 @@ export class MapState extends State {
    * @param consented
    */
   public onLeave (client: Client, consented: boolean): void {
+    delete this.agents[client.sessionId]
     // TODO
   }
 

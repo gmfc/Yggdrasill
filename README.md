@@ -8,10 +8,10 @@
 * World state
 * Player Agent
 * Client (kinda)
+* Agent interactions
 
 ## TODO
 
-* Agent interactions
 * Player switching maps
 * NPCs
 * Global NPCs

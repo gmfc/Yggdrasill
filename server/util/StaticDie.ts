@@ -7,7 +7,7 @@ export class StaticDie {
     // MUST be a prime number
     const primePopulationSize: number = 997
     for (let i = 0; i < primePopulationSize; i++) {
-      this.numbers.push(Math.floor(Math.random() * 100))
+      this.numbers.push(Math.random())
     }
   }
 
