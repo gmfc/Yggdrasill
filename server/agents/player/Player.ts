@@ -8,29 +8,12 @@ export class Player extends ActionAgent {
     super(id,room)
   }
 
-  private move (data: string): void {
-    switch (data) {
-      case 'w':
-        this.y -= 10
-        break
-      case 's':
-        this.y += 10
-        break
-      case 'a':
-        this.x -= 10
-        break
-      case 'd':
-        this.x += 10
-        break
-    }
-  }
-
   public perform (): void {
-    let { action, input } = this.getActionToPerform()
+    this.goToTarget()
+    let { action, data } = this.getActionToPerform()
     switch (action) {
-      case 'keydown':
-        this.move(input)
-        break
+      case 'setTarget':
+        this.setTaget(data.x, data.y)
     }
   }
 

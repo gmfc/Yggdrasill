@@ -46,11 +46,6 @@ export class Application extends PIXI.Application {
 
     this.initialize()
     this.interpolation = true
-    $(document).on('keydown',handler => {
-      if (this.currentPlayerEntity) {
-        this.room.send({ action: 'keydown', input: handler.key })
-      }
-    })
 
     // Event Handlers
     // $(document).on('keyup',_.debounce((handler) => {
@@ -61,12 +56,12 @@ export class Application extends PIXI.Application {
     //   }
     // },100))
 
-    // this.viewport.on('click', (e) => {
-    //   if (this.currentPlayerEntity) {
-    //     const point = this.viewport.toLocal(e.data.global)
-    //     this.room.send(['mouse', { x: point.x, y: point.y }])
-    //   }
-    // })
+    this.viewport.on('click', (e) => {
+      if (this.currentPlayerEntity) {
+        const point = this.viewport.toLocal(e.data.global)
+        this.room.send({ action: 'setTarget', data: { x: point.x, y: point.y } })
+      }
+    })
   }
 
   initialize () {
