@@ -1,8 +1,8 @@
 import { nosync, Room } from 'colyseus'
 import { Ai } from '../../ai/u-ai'
+import { MapData } from '../../data'
 import { MapState } from '../../states'
 import { ActionAgent } from './ActionAgent'
-import { MapData } from '../../data';
 
 export abstract class AiAgent extends ActionAgent {
 

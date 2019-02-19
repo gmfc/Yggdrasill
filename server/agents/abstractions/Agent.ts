@@ -1,7 +1,7 @@
 import { nosync, Room } from 'colyseus'
+import { MapData } from '../../data'
 import { MapState } from '../../states'
 import { AgentAction } from '../player/Player'
-import { MapData } from '../../data';
 
 export abstract class Agent {
 
