@@ -1,7 +1,7 @@
 import { nosync, Room } from 'colyseus'
-import { Agent } from './Agent'
+import { MapData } from '../../data'
 import { MapState } from '../../states'
-import { StaticDie } from '../../util'
+import { Agent } from './Agent'
 
 export abstract class ActionAgent extends Agent {
 
@@ -10,17 +10,18 @@ export abstract class ActionAgent extends Agent {
   public y: number = 0
 
   @nosync
-  public targetX: number
+  public targetX: number = 0
 
   @nosync
-  public targetY: number
+  public targetY: number = 0
 
   @nosync
-  public speed = 2
+  public speed = 0
 
-  constructor (id: string, room: Room) {
-    super(id, room)
-    this.setTaget(StaticDie.number * 500, StaticDie.number * 500)
+  public color: number = 0xFFFF0B
+
+  constructor (id: string, room: Room, mapData: MapData) {
+    super(id, room, mapData)
   }
 
   public agentInRange (wState: MapState, range: number): boolean | string {

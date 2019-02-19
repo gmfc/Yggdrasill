@@ -3,8 +3,8 @@ import { SimulationCallback } from 'colyseus/lib/Room'
 import * as nanoid from 'nanoid'
 import * as agents from '../agents'
 import { ActionAgent } from '../agents/abstractions/ActionAgent'
-import { Player, AgentAction } from '../agents/player/Player'
-import { AgentGroupData, getMapData, MapData } from '../data'
+import { AgentAction, Player } from '../agents/player/Player'
+import { getMapData, MapData } from '../data'
 import { State } from './abstractions/State'
 
 export class MapState extends State {
@@ -14,12 +14,9 @@ export class MapState extends State {
   @nosync
   private mapData: MapData
 
-  @nosync
-  private populated: boolean = false
-
   constructor (public mapName: string, room: Room) {
-
     super(mapName, room)
+    this.room.setMetadata(this.mapData)
     console.log(`MapStateCreate`)
     // TODO: getMapData may be async call?
     this.mapData = getMapData(mapName)
@@ -29,21 +26,12 @@ export class MapState extends State {
 
   private populateAgents (): void {
     console.log(`Populating...`)
-    this.populated = true
-    this.mapData.agentGroups.forEach(agenrGroup => {
-      this.populateAgentGroup(agenrGroup)
+    this.mapData.agentGroups.forEach(({ numberOfAgents, agentName }) => {
+      for (let c = 0; c < numberOfAgents; c++) {
+        const agentID = nanoid(10)
+        this.agents[agentID] = new agents[agentName](agentID, this.room, this.mapData)
+      }
     })
-  }
-
-  private populateAgentGroup (agenrGroup: AgentGroupData): void {
-    for (let c = 0; c < agenrGroup.number; c++) {
-      this.createAgent(agenrGroup.agentName)
-    }
-  }
-
-  private createAgent (agentName: string): void {
-    const agentID = nanoid(10)
-    this.agents[agentID] = new agents[agentName](agentID, this.room)
   }
 
   /**
@@ -71,7 +59,7 @@ export class MapState extends State {
    * @param options
    */
   public onJoin (client: Client, options: any): void {
-    this.agents[client.sessionId] = new Player(client.sessionId, this.room)
+    this.agents[client.sessionId] = new Player(client.sessionId, this.room, this.mapData)
     // TODO
   }
 

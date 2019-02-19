@@ -7,7 +7,7 @@ export declare type MapData = {
 
 export declare type AgentGroupData = {
   agentName: string,
-  number: number
+  numberOfAgents: number
 }
 
 export function getMapData (mapName: string): MapData {
@@ -16,7 +16,7 @@ export function getMapData (mapName: string): MapData {
     map: false,
     size: 500,
     agentGroups: [
-      { agentName: 'Slime', number: 30 }
+      { agentName: 'Slime', numberOfAgents: 30 }
     ]
   } as MapData
 }

@@ -73,11 +73,9 @@ export class Application extends PIXI.Application {
       if (change.operation === 'add') {
         console.log('add')
 
-        const color = 0xFFFF0B
-
         const graphics = new PIXI.Graphics()
         graphics.lineStyle(0)
-        graphics.beginFill(color, 0.5)
+        graphics.beginFill(change.value.color, 0.5)
         graphics.drawCircle(0, 0, 10)
         graphics.endFill()
 
@@ -88,7 +86,9 @@ export class Application extends PIXI.Application {
         this.agents[change.path.id] = graphics
 
         // detecting current user
+
         if (change.path.id === this.room.sessionId) {
+          console.log(change.operation, change.path.id, this.room.sessionId)
           this.currentPlayerEntity = graphics
           this.viewport.follow(this.currentPlayerEntity)
         }

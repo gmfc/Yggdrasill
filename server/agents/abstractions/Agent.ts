@@ -1,6 +1,7 @@
 import { nosync, Room } from 'colyseus'
 import { MapState } from '../../states'
 import { AgentAction } from '../player/Player'
+import { MapData } from '../../data';
 
 export abstract class Agent {
 
@@ -9,9 +10,13 @@ export abstract class Agent {
   @nosync
   public room: Room
 
-  constructor (id: string, room: Room) {
+  @nosync
+  public mapData: MapData
+
+  constructor (id: string, room: Room, mapData: MapData) {
     this.room = room
     this.id = id
+    this.mapData = mapData
   }
 
   /**
