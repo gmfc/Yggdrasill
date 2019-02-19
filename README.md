@@ -10,11 +10,11 @@
 * Player Agent
 * Client (kinda)
 * Agent interactions
+* NPCs
+* Map asset's map
 
 ## TODO
 
 * Player switching maps
-* NPCs
 * Global NPCs
-* Map asset's map
 * Game?
