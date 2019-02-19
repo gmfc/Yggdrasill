@@ -1,12 +1,11 @@
 import * as PIXI from 'pixi.js'
-import Viewport from 'pixi-viewport'
 import { Client, DataChange } from 'colyseus.js'
 import $ from 'jquery'
-import _ from 'underscore'
+import Viewport from 'pixi-viewport'
 
 const ENDPOINT = `${window.location.protocol.replace('http','ws')}//${window.location.host}`
 
-const WORLD_SIZE = 2000
+const WORLD_SIZE = 500
 
 export const lerp = (a: number, b: number, t: number) => (b - a) * t + a
 
@@ -47,11 +46,6 @@ export class Application extends PIXI.Application {
 
     this.initialize()
     this.interpolation = true
-    $(document).on('keydown',handler => {
-      if (this.currentPlayerEntity) {
-        this.room.send({ action: 'keydown', input: handler.key })
-      }
-    })
 
     // Event Handlers
     // $(document).on('keyup',_.debounce((handler) => {
@@ -62,12 +56,12 @@ export class Application extends PIXI.Application {
     //   }
     // },100))
 
-    // this.viewport.on('click', (e) => {
-    //   if (this.currentPlayerEntity) {
-    //     const point = this.viewport.toLocal(e.data.global)
-    //     this.room.send(['mouse', { x: point.x, y: point.y }])
-    //   }
-    // })
+    this.viewport.on('click', (e) => {
+      if (this.currentPlayerEntity) {
+        const point = this.viewport.toLocal(e.data.global)
+        this.room.send({ action: 'setTarget', data: { x: point.x, y: point.y } })
+      }
+    })
   }
 
   initialize () {

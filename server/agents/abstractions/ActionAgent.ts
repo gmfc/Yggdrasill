@@ -1,12 +1,13 @@
-import { Agent } from './Agent'
 import { nosync, Room } from 'colyseus'
+import { Agent } from './Agent'
 import { MapState } from '../../states'
 import { StaticDie } from '../../util'
 
 export type AgentAction = {
   action: string,
   input?: string,
-  target?: string
+  target?: string,
+  data?: any
 }
 
 export abstract class ActionAgent extends Agent {

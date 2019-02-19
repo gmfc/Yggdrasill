@@ -1,1 +1,1 @@
-export { MapData, AgentGroupData, getMapData } from './MapData'
+export { AgentGroupData, getMapData, MapData } from './MapData'

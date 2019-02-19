@@ -14,7 +14,7 @@ export function getMapData (mapName: string): MapData {
     mapName: 'testMap',
     map: false,
     agentGroups: [
-      { agentName: 'Slime', number: 120 }
+      { agentName: 'Slime', number: 30 }
     ]
   } as MapData
 }

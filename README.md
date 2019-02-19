@@ -1,6 +1,7 @@
-[![CodeFactor](https://www.codefactor.io/repository/github/gmfc/yggdrasill/badge)](https://www.codefactor.io/repository/github/gmfc/yggdrasill)
 
 # [WIP]
+
+[![CodeFactor](https://www.codefactor.io/repository/github/gmfc/yggdrasill/badge)](https://www.codefactor.io/repository/github/gmfc/yggdrasill)
 
 ## DONE
 

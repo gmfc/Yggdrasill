@@ -1,7 +1,7 @@
-import { Ai, Action } from './u-ai'
 import { Slime } from '../agents/npc/Slime'
 import { MapState } from '../states'
 import { StaticDie } from '../util'
+import { Action, Ai } from './u-ai'
 
 export class SlimeAi extends Ai {
   constructor (agent: Slime) {
@@ -23,8 +23,8 @@ export class SlimeAi extends Ai {
       })
 
       action.setAction((mapState: MapState, agent: Slime) => {
-        let tx = agent.targetX += StaticDie.number * 500
-        let ty = agent.targetY += StaticDie.number * 500
+        let tx = StaticDie.number * 500
+        let ty = StaticDie.number * 500
         agent.setTaget(tx,ty)
       })
     })

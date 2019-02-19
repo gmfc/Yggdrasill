@@ -1,9 +1,9 @@
+import { monitor } from '@colyseus/monitor'
+import { Server } from 'colyseus'
 import * as express from 'express'
-import { Server, RedisPresence } from 'colyseus'
 import { createServer } from 'http'
 import * as path from 'path'
-import { monitor } from '@colyseus/monitor'
-import { MapRoomController } from './server/rooms'
+import { MapRoomController } from './rooms'
 
 const port = Number(process.env.PORT || 2567)
 const app = express()
@@ -17,7 +17,7 @@ gameServer.register('map', MapRoomController, {
   map: 'test'
 })
 
-app.use('/', express.static(path.join(__dirname, 'dist')))
+app.use('/', express.static(path.join(__dirname, '../dist')))
 
 app.use('/monitor', monitor(gameServer))
 
