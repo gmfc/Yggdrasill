@@ -39,7 +39,6 @@
     "ts-node": "*",
     "tslint": "^5.12.1",
     "tslint-config-standard": "^8.0.1",
-    "typescript": "*",
     "underscore": "^1.9.1"
   }
 }

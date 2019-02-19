@@ -53,8 +53,6 @@ export class Player extends ActionAgent {
   }
 
   public simulate (deltaTime: number, mapState: MapState): void {
-    console.log(`Player simulate deltaT: ${deltaTime}`)
-
     this.perform()
   }
 

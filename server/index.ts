@@ -13,6 +13,8 @@ const gameServer = new Server({
   server: createServer(app)
 })
 
+app.use('/monitor', monitor(gameServer))
+
 gameServer.register('map', MapRoomController, {
   map: 'test'
 }).catch(err => {
@@ -21,7 +23,6 @@ gameServer.register('map', MapRoomController, {
 
 app.use('/', express.static(path.join(__dirname, '../dist')))
 
-app.use('/monitor', monitor(gameServer))
 
 gameServer.onShutdown(() => {
   console.log(`game server is going down.`)
