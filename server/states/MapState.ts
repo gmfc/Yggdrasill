@@ -2,14 +2,14 @@ import { Client, EntityMap, nosync, Room } from 'colyseus'
 import { SimulationCallback } from 'colyseus/lib/Room'
 import * as nanoid from 'nanoid'
 import * as agents from '../agents'
-import { ActionAgent, AgentAction } from '../agents/abstractions/ActionAgent'
-import { Player } from '../agents/player/Player'
+import { ActionAgent } from '../agents/abstractions/ActionAgent'
+import { Player, AgentAction } from '../agents/player/Player'
 import { AgentGroupData, getMapData, MapData } from '../data'
 import { State } from './abstractions/State'
 
 export class MapState extends State {
 
-  public agents: EntityMap<ActionAgent> = {}
+  public agents: EntityMap<ActionAgent | Player> = {}
 
   @nosync
   private mapData: MapData
@@ -81,7 +81,7 @@ export class MapState extends State {
    * @param message message sent
    */
   public onMessage (client: Client, action: AgentAction): void {
-    this.agents[client.sessionId].queueActionToPerform(action)
+    this.agents[client.sessionId].sendAction(action)
   }
 
   /**

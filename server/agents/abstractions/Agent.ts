@@ -1,13 +1,10 @@
 import { nosync, Room } from 'colyseus'
 import { MapState } from '../../states'
+import { AgentAction } from '../player/Player'
 
 export abstract class Agent {
 
   public id: string
-
-  public x: number = 0
-
-  public y: number = 0
 
   @nosync
   public room: Room
@@ -23,5 +20,7 @@ export abstract class Agent {
    * @param mapState
    */
   public abstract simulate (deltaTime: number, mapState: MapState): void
+
+  public abstract sendAction (action: AgentAction)
 
 }

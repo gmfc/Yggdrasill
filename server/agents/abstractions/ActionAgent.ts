@@ -3,14 +3,11 @@ import { Agent } from './Agent'
 import { MapState } from '../../states'
 import { StaticDie } from '../../util'
 
-export type AgentAction = {
-  action: string,
-  input?: string,
-  target?: string,
-  data?: any
-}
-
 export abstract class ActionAgent extends Agent {
+
+  public x: number = 0
+
+  public y: number = 0
 
   @nosync
   public targetX: number
@@ -20,12 +17,6 @@ export abstract class ActionAgent extends Agent {
 
   @nosync
   public speed = 2
-
-  @nosync
-  private actionToPerform: AgentAction[] = []
-
-  @nosync
-  private maxQueueSize: number = 4
 
   constructor (id: string, room: Room) {
     super(id, room)
@@ -73,25 +64,4 @@ export abstract class ActionAgent extends Agent {
     this.y -= (ty / dist) * this.speed
   }
 
-  /**
-   * Set an action to be performed next tick
-   * @param action
-   */
-  public queueActionToPerform (action: AgentAction): void {
-    if (this.actionToPerform.length <= this.maxQueueSize) {
-      this.actionToPerform.push(action)
-    }
-  }
-
-  /**
-   * Get the action to be performed next tick
-   */
-  public getActionToPerform (): AgentAction {
-    return this.actionToPerform.length > 0 ? this.actionToPerform.shift() : { action: 'none',input: 'none',target: 'none' }
-  }
-
-  /**
-   * Perform the action
-   */
-  public abstract perform (): void
 }
