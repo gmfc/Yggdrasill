@@ -1,5 +1,6 @@
 import { Client, Room } from 'colyseus'
 import { MapState } from '../states'
+import { getMapData } from '../data'
 
 /**
  * MapController
@@ -9,8 +10,9 @@ export class MapRoomController extends Room<MapState> {
 
   onInit (options: { map: string }) {
     console.log(`MapRoomController#onInit`)
-
-    this.setState(new MapState(options.map, this))
+    const mapData = getMapData(options.map)
+    this.setMetadata(mapData)
+    this.setState(new MapState(mapData, this))
 
     let simulationInterval = 1000 / 10
     this.setPatchRate(simulationInterval / 2)

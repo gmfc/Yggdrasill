@@ -1,35 +1,27 @@
 import { nosync, Room } from 'colyseus'
-import { Agent } from './Agent'
+import { MapData } from '../../data'
 import { MapState } from '../../states'
-import { StaticDie } from '../../util'
-
-export type AgentAction = {
-  action: string,
-  input?: string,
-  target?: string,
-  data?: any
-}
+import { Agent } from './Agent'
 
 export abstract class ActionAgent extends Agent {
 
-  @nosync
-  public targetX: number
+  public x: number = 0
+
+  public y: number = 0
 
   @nosync
-  public targetY: number
+  public targetX: number = 0
 
   @nosync
-  public speed = 2
+  public targetY: number = 0
 
   @nosync
-  private actionToPerform: AgentAction[] = []
+  public speed = 0
 
-  @nosync
-  private maxQueueSize: number = 4
+  public color: number = 0xFFFF0B
 
-  constructor (id: string, room: Room) {
-    super(id, room)
-    this.setTaget(StaticDie.number * 500, StaticDie.number * 500)
+  constructor (id: string, room: Room, mapData: MapData) {
+    super(id, room, mapData)
   }
 
   public agentInRange (wState: MapState, range: number): boolean | string {
@@ -49,49 +41,28 @@ export abstract class ActionAgent extends Agent {
   }
 
   public getDistance (targetX: number, targetY: number): number {
-    let x = this.x - targetX
-    let y = this.y - targetY
-    let distance = Math.sqrt(x * x + y * y)
+    const x = this.x - targetX
+    const y = this.y - targetY
+    const distance = Math.sqrt(x * x + y * y)
     return distance
   }
 
   public goToTarget (): void {
-    let tx = this.targetX - this.x
-    let ty = this.targetY - this.y
-    let dist = Math.sqrt(tx * tx + ty * ty)
+    const tx = this.targetX - this.x
+    const ty = this.targetY - this.y
+    const dist = Math.sqrt(tx * tx + ty * ty)
 
     this.x += (tx / dist) * this.speed
     this.y += (ty / dist) * this.speed
   }
 
   public fleeTarget (targetX: number, targetY: number) {
-    let tx = targetX - this.x
-    let ty = targetY - this.y
-    let dist = Math.sqrt(tx * tx + ty * ty)
+    const tx = targetX - this.x
+    const ty = targetY - this.y
+    const dist = Math.sqrt(tx * tx + ty * ty)
 
     this.x -= (tx / dist) * this.speed
     this.y -= (ty / dist) * this.speed
   }
 
-  /**
-   * Set an action to be performed next tick
-   * @param action
-   */
-  public queueActionToPerform (action: AgentAction): void {
-    if (this.actionToPerform.length <= this.maxQueueSize) {
-      this.actionToPerform.push(action)
-    }
-  }
-
-  /**
-   * Get the action to be performed next tick
-   */
-  public getActionToPerform (): AgentAction {
-    return this.actionToPerform.length > 0 ? this.actionToPerform.shift() : { action: 'none',input: 'none',target: 'none' }
-  }
-
-  /**
-   * Perform the action
-   */
-  public abstract perform (): void
 }

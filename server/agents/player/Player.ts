@@ -1,11 +1,46 @@
-import { Room } from 'colyseus'
+import { nosync, Room } from 'colyseus'
+import { MapData } from '../../data'
 import { MapState } from '../../states'
 import { ActionAgent } from '../abstractions/ActionAgent'
 
+export type AgentAction = {
+  action: string,
+  input?: string,
+  target?: string,
+  data?: any
+}
+
 export class Player extends ActionAgent {
 
-  constructor (id: string, room: Room) {
-    super(id,room)
+  @nosync
+  private actionToPerform: AgentAction[] = []
+
+  @nosync
+  private maxQueueSize: number = 4
+
+  constructor (id: string, room: Room, mapData: MapData) {
+    super(id,room, mapData)
+    this.speed = 3
+    this.x = 6
+    this.y = 5
+    this.color = 0x00FF0B
+  }
+
+  /**
+   * Set an action to be performed next tick
+   * @param action
+   */
+  public sendAction (action: AgentAction): void {
+    if (this.actionToPerform.length <= this.maxQueueSize) {
+      this.actionToPerform.push(action)
+    }
+  }
+
+  /**
+   * Get the action to be performed next tick
+   */
+  public getActionToPerform (): AgentAction {
+    return this.actionToPerform.length > 0 ? this.actionToPerform.shift() : { action: 'none',input: 'none',target: 'none' }
   }
 
   public perform (): void {
@@ -18,6 +53,8 @@ export class Player extends ActionAgent {
   }
 
   public simulate (deltaTime: number, mapState: MapState): void {
+    console.log(`Player simulate deltaT: ${deltaTime}`)
+
     this.perform()
   }
 

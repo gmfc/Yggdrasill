@@ -2,48 +2,31 @@ import { Client, EntityMap, nosync, Room } from 'colyseus'
 import { SimulationCallback } from 'colyseus/lib/Room'
 import * as nanoid from 'nanoid'
 import * as agents from '../agents'
-import { ActionAgent, AgentAction } from '../agents/abstractions/ActionAgent'
-import { Player } from '../agents/player/Player'
-import { AgentGroupData, getMapData, MapData } from '../data'
+import { ActionAgent } from '../agents/abstractions/ActionAgent'
+import { AgentAction, Player } from '../agents/player/Player'
+import { getMapData, MapData } from '../data'
 import { State } from './abstractions/State'
 
 export class MapState extends State {
 
   public agents: EntityMap<ActionAgent> = {}
 
-  @nosync
-  private mapData: MapData
-
-  @nosync
-  private populated: boolean = false
-
-  constructor (public mapName: string, room: Room) {
-
-    super(mapName, room)
+  constructor (mapData: MapData, room: Room) {
+    super(mapData, room)
     console.log(`MapStateCreate`)
     // TODO: getMapData may be async call?
-    this.mapData = getMapData(mapName)
     this.populateAgents()
 
   }
 
   private populateAgents (): void {
     console.log(`Populating...`)
-    this.populated = true
-    this.mapData.agentGroups.forEach(agenrGroup => {
-      this.populateAgentGroup(agenrGroup)
+    this.mapData.agentGroups.forEach(({ numberOfAgents, agentName }) => {
+      for (let c = 0; c < numberOfAgents; c++) {
+        const agentID = nanoid(10)
+        this.agents[agentID] = new agents[agentName](agentID, this.room, this.mapData)
+      }
     })
-  }
-
-  private populateAgentGroup (agenrGroup: AgentGroupData): void {
-    for (let c = 0; c < agenrGroup.number; c++) {
-      this.createAgent(agenrGroup.agentName)
-    }
-  }
-
-  private createAgent (agentName: string): void {
-    const agentID = nanoid(10)
-    this.agents[agentID] = new agents[agentName](agentID, this.room)
   }
 
   /**
@@ -71,7 +54,7 @@ export class MapState extends State {
    * @param options
    */
   public onJoin (client: Client, options: any): void {
-    this.agents[client.sessionId] = new Player(client.sessionId, this.room)
+    this.agents[client.sessionId] = new Player(client.sessionId, this.room, this.mapData)
     // TODO
   }
 
@@ -81,7 +64,7 @@ export class MapState extends State {
    * @param message message sent
    */
   public onMessage (client: Client, action: AgentAction): void {
-    this.agents[client.sessionId].queueActionToPerform(action)
+    this.agents[client.sessionId].sendAction(action)
   }
 
   /**

@@ -1,15 +1,16 @@
 import { Client, nosync, Room } from 'colyseus'
 import { SimulationCallback } from 'colyseus/lib/Room'
+import { MapData } from '../../data'
 
 export abstract class State {
 
-  public mapName: string
+  public mapData: MapData
 
   @nosync
   public room: Room
 
-  constructor (mapName: string, room: Room) {
-    this.mapName = mapName
+  constructor (mapData: MapData, room: Room) {
+    this.mapData = mapData
     this.room = room
   }
 

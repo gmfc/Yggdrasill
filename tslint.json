@@ -1,6 +1,6 @@
 {
     "extends": "tslint-config-standard",
     "exclude": [
-        "./node_modules"
+        "node_modules"
     ]
 }
