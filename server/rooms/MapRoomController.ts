@@ -1,6 +1,6 @@
 import { Client, Room } from 'colyseus'
 import { MapState } from '../states'
-import { getMapData } from '../data';
+import { getMapData } from '../data'
 
 /**
  * MapController

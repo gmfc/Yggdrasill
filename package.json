@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon --watch ./server/**/*.ts --exec ts-node ./server/index.ts",
     "build-client": "parcel build ./client/index.html",
-    "client": "parcel ./client/index.html"
+    "client": "parcel ./client/index.html",
+    "loadtest": "colyseus-loadtest tests/bot.ts --endpoint ws://localhost:2567 --room map --numClients 50"
   },
   "engines": {
     "node": "10.14.1"
@@ -25,6 +26,7 @@
     "superagent": "*"
   },
   "devDependencies": {
+    "@colyseus/loadtest": "^0.2.1",
     "@types/jquery": "^3.3.29",
     "@types/node": "^11.9.4",
     "@types/pixi.js": "^4.8.6",
