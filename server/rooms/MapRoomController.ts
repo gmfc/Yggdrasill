@@ -8,9 +8,9 @@ import { getMapData } from '../data'
  */
 export class MapRoomController extends Room<MapState> {
 
-  onInit (options: { map: string }) {
+  async onInit (options: { map: string }) {
     console.log(`MapRoomController#onInit`)
-    const mapData = getMapData(options.map)
+    const mapData = await getMapData(options.map)
     this.setMetadata(mapData)
     this.setState(new MapState(mapData, this))
 

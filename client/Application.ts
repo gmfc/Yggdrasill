@@ -1,6 +1,5 @@
 import * as PIXI from 'pixi.js'
 import { Client, DataChange } from 'colyseus.js'
-import $ from 'jquery'
 import Viewport from 'pixi-viewport'
 
 const ENDPOINT = `${window.location.protocol.replace('http','ws')}//${window.location.host}`
@@ -121,6 +120,7 @@ export class Application extends PIXI.Application {
       if (this.agents.hasOwnProperty(id)) {
         this.agents[id].x = lerp(this.agents[id].x, this.room.state.agents[id].x, 0.2)
         this.agents[id].y = lerp(this.agents[id].y, this.room.state.agents[id].y, 0.2)
+        this.agents[id].tint = this.room.state.agents[id].color
       }
     }
 
