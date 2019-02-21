@@ -4,6 +4,7 @@ import * as express from 'express'
 import { createServer } from 'http'
 import * as path from 'path'
 import { MapRoomController } from './rooms'
+import mapDataBroker from './data/Broker'
 
 const port = Number(process.env.PORT || 2567)
 const app = express()
@@ -23,6 +24,7 @@ gameServer.register('map', MapRoomController, {
 
 app.use('/', express.static(path.join(__dirname, '../dist')))
 
+app.use('/mapData', mapDataBroker)
 
 gameServer.onShutdown(() => {
   console.log(`game server is going down.`)

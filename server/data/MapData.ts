@@ -10,13 +10,13 @@ export declare type AgentGroupData = {
   numberOfAgents: number
 }
 
-export function getMapData (mapName: string): MapData {
+export async function getMapData (mapName: string): Promise<MapData> {
   return {
     mapName: 'testMap',
     map: false,
     size: 500,
     agentGroups: [
-      { agentName: 'Slime', numberOfAgents: 150 }
+      { agentName: 'Slime', numberOfAgents: 30 }
     ]
   } as MapData
 }

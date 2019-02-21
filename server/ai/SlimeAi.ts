@@ -13,6 +13,7 @@ export class SlimeAi extends Ai {
       })
 
       action.setAction((mapState: MapState, agent: Slime) => {
+        agent.speed = 2
         agent.goToTarget()
       })
     })
@@ -38,6 +39,7 @@ export class SlimeAi extends Ai {
 
       action.setAction((mapState: MapState, agent: Slime) => {
         if (typeof nearId === 'string') {
+          agent.speed = 5
           agent.fleeTarget(mapState.agents[nearId].x, mapState.agents[nearId].y)
         }
       })
