@@ -97,7 +97,7 @@ export class Application extends PIXI.Application {
         this.agents[change.path.id].destroy()
         delete this.agents[change.path.id]
       }
-    })
+    }, true)
   }
 
   set interpolation (bool: boolean) {

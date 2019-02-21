@@ -14,7 +14,6 @@ export class SlimeAi extends Ai {
 
       action.setAction((mapState: MapState, agent: Slime) => {
         agent.speed = 2
-        agent.color = 0xFFFF0B
         agent.goToTarget()
       })
     })
@@ -25,7 +24,6 @@ export class SlimeAi extends Ai {
       })
 
       action.setAction((mapState: MapState, agent: Slime) => {
-        agent.color = 0x0000FF
         let tx = StaticDie.number * agent.mapData.size
         let ty = StaticDie.number * agent.mapData.size
         agent.setTaget(tx,ty)
@@ -41,7 +39,6 @@ export class SlimeAi extends Ai {
 
       action.setAction((mapState: MapState, agent: Slime) => {
         if (typeof nearId === 'string') {
-          agent.color = 0xFF000B
           agent.speed = 5
           agent.fleeTarget(mapState.agents[nearId].x, mapState.agents[nearId].y)
         }
