@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "nodemon --watch ./server/**/*.ts --exec ts-node ./server/index.ts",
+    "start": "ts-node ./server/index.ts",
+    "ndm": "nodemon --watch ./server/**/*.ts --exec ts-node ./server/index.ts",
     "build-client": "parcel build ./client/index.html --no-source-maps",
     "client": "parcel ./client/index.html",
     "loadtest": "colyseus-loadtest tests/bot.ts --endpoint ws://localhost:2567 --room map --numClients 50"
