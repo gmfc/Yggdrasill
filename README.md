@@ -5,6 +5,8 @@
 
 Prototyping base of a future MMO
 
+Simple demo: https://ygds.herokuapp.com/
+
 ## TODO
 
 * Client in Unity
