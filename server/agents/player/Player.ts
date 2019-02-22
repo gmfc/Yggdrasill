@@ -23,7 +23,7 @@ export class Player extends ActionAgent {
     this.speed = 3
     this.x = 6
     this.y = 5
-    this.color = 0x00FF0B
+    this.color = 0xFF0000
   }
 
   /**

@@ -18,7 +18,7 @@ export abstract class ActionAgent extends Agent {
   @nosync
   public speed = 0
 
-  public color: number = 0xFFFF0B
+  public color: number = 0x0000FF
 
   constructor (id: string, room: Room, mapData: MapData) {
     super(id, room, mapData)
