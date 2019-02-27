@@ -1,13 +1,18 @@
 
-# [WIP]
+# [Yggdrasill]
+> powered by [colyseus](http://colyseus.io)
 
 [![CodeFactor](https://www.codefactor.io/repository/github/gmfc/yggdrasill/badge)](https://www.codefactor.io/repository/github/gmfc/yggdrasill)
 
-Simple demo: https://ygds.herokuapp.com/
+Simple server demo: https://ygds.herokuapp.com/
+
+## What is it
 
 Yggdrasill is (or rather, hopefully will be) the server of an opensource MMORPG.
 
 I'm taking [Ragnarok Online](https://en.wikipedia.org/wiki/Ragnarok_Online) as inspiration.
+
+## The Objective
 
 The aim is to build a game capable to some degree of:
 
@@ -37,3 +42,15 @@ The aim is to build a game capable to some degree of:
 * Extra
   * Persistent PC presence (Needs more thinking...)
     * When a player logout the PC stays in the game and assumes an agent based AI (configurated by the player)
+
+## Tenets
+> It's All About Social Interaction
+
+1. Slow Regen
+   1. Help eachother
+1. No Quests
+   1. Hunt oportunities
+1. No level segregation
+   1. Strong and weak players interact
+1. Visually Diverse, Visually Recognizable Players
+   1. Self identification
