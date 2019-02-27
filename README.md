@@ -9,7 +9,7 @@ Yggdrasill is (or rather, hopefully will be) the server of an opensource MMORPG.
 
 I'm taking [Ragnarok Online](https://en.wikipedia.org/wiki/Ragnarok_Online) as inspiration.
 
-The aim is to build a game capable of:
+The aim is to build a game capable to some degree of:
 
 * Combat
   * PC vs NPC (PVE)
@@ -35,5 +35,5 @@ The aim is to build a game capable of:
   * Every item can be manufactured by PCs/NPCs
   * NPC controlled auctions (PCs can sell items in auctions and both PCs and NPCs can buy)
 * Extra
-  * Persistent PC presence
+  * Persistent PC presence (Needs more thinking...)
     * When a player logout the PC stays in the game and assumes an agent based AI (configurated by the player)
