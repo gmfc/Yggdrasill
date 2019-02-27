@@ -7,7 +7,7 @@ Simple demo: https://ygds.herokuapp.com/
 
 Yggdrasill is (or rather, hopefully will be) the server of an opensource MMORPG.
 
-I'm taking [Ragrarok Online](https://en.wikipedia.org/wiki/Ragnarok_Online) as inspiration.
+I'm taking [Ragnarok Online](https://en.wikipedia.org/wiki/Ragnarok_Online) as inspiration.
 
 The aim is to build a game capable of:
 
