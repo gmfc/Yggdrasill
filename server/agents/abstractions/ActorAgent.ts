@@ -3,7 +3,7 @@ import { MapData } from '../../data'
 import { MapState } from '../../states'
 import { Agent } from './Agent'
 
-export abstract class ActionAgent extends Agent {
+export abstract class ActorAgent extends Agent {
 
   public x: number = 0
 

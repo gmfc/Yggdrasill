@@ -1,7 +1,7 @@
 import { nosync, Room } from 'colyseus'
 import { MapData } from '../../data'
 import { MapState } from '../../states'
-import { ActionAgent } from '../abstractions/ActionAgent'
+import { ActorAgent } from '../abstractions/ActorAgent'
 
 export type AgentAction = {
   action: string,
@@ -10,7 +10,7 @@ export type AgentAction = {
   data?: any
 }
 
-export class Player extends ActionAgent {
+export class Player extends ActorAgent {
 
   @nosync
   private actionToPerform: AgentAction[] = []

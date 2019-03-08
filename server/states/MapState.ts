@@ -2,14 +2,14 @@ import { Client, EntityMap, nosync, Room } from 'colyseus'
 import { SimulationCallback } from 'colyseus/lib/Room'
 import * as nanoid from 'nanoid'
 import * as agents from '../agents'
-import { ActionAgent } from '../agents/abstractions/ActionAgent'
+import { ActorAgent } from '../agents/abstractions/ActorAgent'
 import { AgentAction, Player } from '../agents/player/Player'
 import { getMapData, MapData } from '../data'
 import { State } from './abstractions/State'
 
 export class MapState extends State {
 
-  public agents: EntityMap<ActionAgent> = {}
+  public agents: EntityMap<ActorAgent> = {}
 
   constructor (mapData: MapData, room: Room) {
     super(mapData, room)
