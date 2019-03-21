@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+
+<body>
+  <h1>Client Join Map</h1>
+  <pre class="mermaid">
+    sequenceDiagram
+      participant Client
+      participant Server
+      participant MapRoomController
+      participant MapState
+      participant Agent
+
+      Server ->> MapRoomController: Register Map
+      Client ->> Server: Join Map
+      Server ->> MapRoomController: Register Client
+      MapRoomController -->> Client: Connect
+
+      MapRoomController ->> MapRoomController: Initialize Map Data
+      MapRoomController ->> MapRoomController: Set Cicles intervals
+      MapRoomController ->> MapState: Set Map State
+
+      MapState ->> MapState: Initialize
+      loop CreateAgents
+        MapState ->> Agent: Create Agent
+        Agent -->> MapState: Register State
+      end
+  </pre>
+
+  <h1>Client Message handling</h1>
+  <pre class="mermaid">
+
+    sequenceDiagram
+    participant Client
+    participant MapRoomController
+    participant MapState
+    participant Agent
+    
+    Client ->> MapRoomController: Send
+    MapRoomController ->> MapState: onMessage
+    
+    MapState ->> Agent: sendAction
+    Agent ->> Agent: Queue Action To Perform
+    
+    Note right of Agent: Action will be performed<br/>next server tic
+    
+  </pre>
+
+  <h1>Server Tic</h1>
+  <pre class="mermaid">
+    sequenceDiagram
+      participant Client
+      participant MapRoomController
+      participant MapState
+      participant Agent
+
+      MapRoomController ->> MapRoomController: Triger Tic
+      MapRoomController ->> MapState: Simulate
+
+      loop for each Agent
+        MapState ->> Agent: Simulate
+        Agent ->> Agent: Perform Queued Action
+        Agent ->> Agent: Calculate Behavior
+      end
+
+      MapState -->> Client: Send State Deltas
+  </pre>
+  <script src="./index.js" charset="utf-8"></script>
+</body>
+
+</html>

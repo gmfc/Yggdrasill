@@ -1,7 +1,7 @@
 import mermaid from 'mermaid'
 
 mermaid.initialize({
-  theme: 'forest',
+  theme: 'neutral',
   gantt: { axisFormatter: [
     ['%Y-%m-%d', (d) => {
       return d.getDay() === 1

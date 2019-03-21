@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Overview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h3><a href="./index.html">Index</a></h3>
+
+    <pre class="mermaid">
+        sequenceDiagram
+          participant Client
+          participant Server
+          participant Map
+          participant Agent
+
+          activate Server
+          Server ->> Server: Start And Register Maps
+          deactivate Server
+
+          loop Connection Handling
+            Client ->>+ Server: Request Map Join
+            Server ->> Server: Auth Client
+            Server ->>- Client: Open Connection
+
+            alt Map instance exists
+              activate Map
+                Server ->> Map: Register Client
+                Map ->> Map: Create Player Agent
+              deactivate Map
+            else First Client to connect
+              activate Map
+                Server ->> Map: Create map instance
+                Map ->> Map: Populate NPCs Agents
+                Server ->> Map: Register Client
+                Map ->> Map: Create Player Agent
+              deactivate Map
+            end
+            Map ->> Client: Send Map State
+          end
+        
+          loop Server Tic
+            Server ->>+ Map: Triger Tic
+            loop for each Agent
+              alt NPC
+                Map ->>+ Agent: Simulate
+                Agent ->>+ Agent: Get action from Ai
+                Agent ->>- Agent: Queue Action
+                Agent ->>- Map: Calculate Agent State Changes
+              else Player
+                Agent ->> Map: Calculate Agent State Changes
+              end
+              Map ->>+ Agent: Execute Queued Action
+              Agent ->> Map: Calculate Agent State Changes
+              Agent ->>- Map: Apply State Changes
+            end
+            Map ->>- Client: Send Map State Deltas
+          end
+
+          loop Player input
+            Client -X Server: Input broadcast
+            Server -X Map: Action broadcast
+            Map -X Agent: Queue Player Agent Action
+          end
+
+          loop Map events
+            Agent -X Map: Event broadcast
+            Map -X Server: Event broadcast
+            loop for each Client
+              Server -X Client: Send Event
+            end
+          end
+
+    </pre>
+
+    <script src="./index.js" charset="utf-8"></script>
+</body>
+</html>
