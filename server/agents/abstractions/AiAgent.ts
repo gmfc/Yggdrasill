@@ -4,6 +4,9 @@ import { MapData } from '../../data'
 import { MapState } from '../../states'
 import { ActionAgent } from './ActionAgent'
 
+/**
+ * An AiAgent is an ActionAgent controlled by an Ai
+ */
 export abstract class AiAgent extends ActionAgent {
 
   @nosync

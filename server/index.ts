@@ -22,7 +22,7 @@ gameServer.register('map', MapRoomController, {
   console.error(err)
 })
 
-app.use('/', express.static(path.join(__dirname, '../dist')))
+app.use('/', express.static(path.join(__dirname, '../client')))
 
 app.use('/mapData', mapDataBroker)
 

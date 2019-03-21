@@ -1,8 +1,10 @@
 import { nosync, Room } from 'colyseus'
 import { MapData } from '../../data'
 import { MapState } from '../../states'
-import { AgentAction } from '../player/Player'
 
+/**
+ * An Agent is a Entity that exists in a map/Room
+ */
 export abstract class Agent {
 
   public id: string
@@ -25,7 +27,5 @@ export abstract class Agent {
    * @param mapState
    */
   public abstract simulate (deltaTime: number, mapState: MapState): void
-
-  public abstract sendAction (action: AgentAction)
 
 }
